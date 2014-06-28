@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkRootSettings" id="Symfony2">
+    <option name="typedPaths">
+      <list>
+        <element elementPath="$PROJECT_DIR$/app" typeId="src_directory" />
+        <element elementPath="$PROJECT_DIR$/app/config" typeId="app_directory" />
+        <element elementPath="$PROJECT_DIR$/bootstrap" typeId="all_bundle_resources_directory" />
+        <element elementPath="$PROJECT_DIR$/public" typeId="web_directory" />
+        <element elementPath="$PROJECT_DIR$/vendor" typeId="vendor_directory" />
+      </list>
+    </option>
+  </component>
+</project>
+

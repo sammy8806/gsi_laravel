@@ -12127,7 +12127,7 @@ namespace {
 		/**
 		 * Get the engine resolver instance.
 		 *
-		 * @return \Illuminate\View\Engines\EngineResolver
+		 * @return \Illuminate\View\Engines\EngineResolverphp artisan key:generate
 		 * @static 
 		 */
 		 public static function getEngineResolver(){

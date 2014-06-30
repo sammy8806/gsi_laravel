@@ -15,3 +15,10 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+Route::resource('user', 'UserController');
+Route::resource('game', 'GameController');
+Route::resource('gameserver', 'GameserverController');
+Route::resource('host', 'HostController');
+Route::resource('script', 'ScriptController');
+Route::resource('ticket', 'TicketController');

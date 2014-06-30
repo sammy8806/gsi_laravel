@@ -16,4 +16,4 @@ class Script extends Eloquent {
         return $this->belongsTo('Game');
     }
 
-} 
+}

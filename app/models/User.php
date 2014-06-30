@@ -6,37 +6,55 @@ use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
-class User extends Eloquent implements UserInterface, RemindableInterface
-{
+class User extends Eloquent implements UserInterface, RemindableInterface {
 
-    use UserTrait, RemindableTrait, SoftDeletingTrait;
+   use UserTrait, RemindableTrait, SoftDeletingTrait;
 
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'users';
+   /**
+    * The database table used by the model.
+    *
+    * @var string
+    */
+   protected $table = 'users';
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = array('password', 'remember_token');
+   /**
+    * The attributes excluded from the model's JSON form.
+    *
+    * @var array
+    */
+   protected $hidden = array('password', 'remember_token');
 
-    protected $fillable = [
-        'first_name', 'last_name', 'email', 'customLoginName',
-        'lastLogin', 'lastLoginIP', 'lastLoginDate', 'active',
-        'address', 'phone', 'cellnumber'
-    ];
-    protected $guarded = ['password'];
-    protected $dates = ['deleted_at'];
+   protected $fillable = [
+         'first_name',
+         'last_name',
+         'email',
+         'customLoginName',
+         'lastLogin',
+         'lastLoginIP',
+         'lastLoginDate',
+         'active',
+         'address',
+         'phone',
+         'cellnumber'
+   ];
+   protected $guarded = ['password'];
+   protected $dates = ['deleted_at'];
 
-    public function gameservers()
-    {
-        return $this->hasMany('Gameserver');
-    }
+   public function gameservers() {
+      return $this->hasMany('Gameserver');
+   }
+
+   public function rights() {
+      return $this->hasMany('UserRight');
+   }
+
+   public function groups() {
+      return $this->hasMany('UserGroup');
+   }
+
+   public function permissions() {
+      return $this->hasMany('UserPermission');
+   }
 
 //    public function tickets()
 //    {

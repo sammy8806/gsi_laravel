@@ -18,11 +18,11 @@ class Game extends Eloquent {
    protected $dates = ['deleted_at'];
 
    public function scripts() {
-      $this->belongsToMany('Script');
+      return $this->belongsToMany('Script');
    }
 
    public function gameservers() {
-      $this->hasMany('Game');
+      return $this->hasMany('Game');
    }
 
 } 

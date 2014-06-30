@@ -26,7 +26,7 @@ class Gameserver extends Eloquent {
    }
 
    public function ip() {
-      return $this->hasMany('GameserverIp');
+      return $this->hasOne('GameserverIp');
    }
 
 }

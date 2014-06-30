@@ -2508,26 +2508,24 @@ namespace {
 		 * @param string  $key
 		 * @param mixed   $value
 		 * @return void
-		 * @throws \LogicException
 		 * @static 
 		 */
 		 public static function increment($key, $value = 1){
-			//Method inherited from \Illuminate\Cache\FileStore
-			 \Illuminate\Cache\FileStore::increment($key, $value);
+			//Method inherited from \Illuminate\Cache\ArrayStore
+			 \Illuminate\Cache\ArrayStore::increment($key, $value);
 		 }
 
 		/**
-		 * Decrement the value of an item in the cache.
+		 * Increment the value of an item in the cache.
 		 *
 		 * @param string  $key
 		 * @param mixed   $value
 		 * @return void
-		 * @throws \LogicException
 		 * @static 
 		 */
 		 public static function decrement($key, $value = 1){
-			//Method inherited from \Illuminate\Cache\FileStore
-			 \Illuminate\Cache\FileStore::decrement($key, $value);
+			//Method inherited from \Illuminate\Cache\ArrayStore
+			 \Illuminate\Cache\ArrayStore::decrement($key, $value);
 		 }
 
 		/**
@@ -2539,8 +2537,8 @@ namespace {
 		 * @static 
 		 */
 		 public static function forever($key, $value){
-			//Method inherited from \Illuminate\Cache\FileStore
-			 \Illuminate\Cache\FileStore::forever($key, $value);
+			//Method inherited from \Illuminate\Cache\ArrayStore
+			 \Illuminate\Cache\ArrayStore::forever($key, $value);
 		 }
 
 		/**
@@ -2551,8 +2549,8 @@ namespace {
 		 * @static 
 		 */
 		 public static function forget($key){
-			//Method inherited from \Illuminate\Cache\FileStore
-			 \Illuminate\Cache\FileStore::forget($key);
+			//Method inherited from \Illuminate\Cache\ArrayStore
+			 \Illuminate\Cache\ArrayStore::forget($key);
 		 }
 
 		/**
@@ -2562,30 +2560,32 @@ namespace {
 		 * @static 
 		 */
 		 public static function flush(){
-			//Method inherited from \Illuminate\Cache\FileStore
-			 \Illuminate\Cache\FileStore::flush();
+			//Method inherited from \Illuminate\Cache\ArrayStore
+			 \Illuminate\Cache\ArrayStore::flush();
 		 }
 
 		/**
-		 * Get the Filesystem instance.
+		 * Begin executing a new tags operation.
 		 *
-		 * @return \Illuminate\Filesystem\Filesystem
+		 * @param string  $name
+		 * @return \Illuminate\Cache\TaggedCache
 		 * @static 
 		 */
-		 public static function getFilesystem(){
-			//Method inherited from \Illuminate\Cache\FileStore
-			return \Illuminate\Cache\FileStore::getFilesystem();
+		 public static function section($name){
+			//Method inherited from \Illuminate\Cache\TaggableStore
+			return \Illuminate\Cache\ArrayStore::section($name);
 		 }
 
 		/**
-		 * Get the working directory of the cache.
+		 * Begin executing a new tags operation.
 		 *
-		 * @return string
+		 * @param array|dynamic  $names
+		 * @return \Illuminate\Cache\TaggedCache
 		 * @static 
 		 */
-		 public static function getDirectory(){
-			//Method inherited from \Illuminate\Cache\FileStore
-			return \Illuminate\Cache\FileStore::getDirectory();
+		 public static function tags($names){
+			//Method inherited from \Illuminate\Cache\TaggableStore
+			return \Illuminate\Cache\ArrayStore::tags($names);
 		 }
 
 	}
@@ -10592,6 +10592,18 @@ namespace {
 		 }
 
 		/**
+		 * Check if a route with the given name exists.
+		 *
+		 * @param string  $name
+		 * @return bool
+		 * @static 
+		 */
+		 public static function has($name){
+			//Method inherited from \Illuminate\Routing\Router
+			return \Illuminate\Routing\Router::has($name);
+		 }
+
+		/**
 		 * Get the current route name.
 		 *
 		 * @return string|null
@@ -12127,7 +12139,7 @@ namespace {
 		/**
 		 * Get the engine resolver instance.
 		 *
-		 * @return \Illuminate\View\Engines\EngineResolverphp artisan key:generate
+		 * @return \Illuminate\View\Engines\EngineResolver
 		 * @static 
 		 */
 		 public static function getEngineResolver(){

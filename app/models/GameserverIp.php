@@ -13,7 +13,7 @@ class GameserverIp extends Eloquent {
    protected $fillable = ['port'];
 
    public function gameserver() {
-      return $this->belongsTo('Gameserver');
+      return $this->has('Gameserver');
    }
 
    public function ip() {

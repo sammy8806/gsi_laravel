@@ -14,7 +14,7 @@ class Gameserver extends Eloquent {
 
    protected $table = 'gameservers';
 
-   protected $fillable = ['weight'];
+   protected $fillable = ['weight', 'slot', 'memory', 'status', 'displayName'];
    protected $dates = ['deleted_at'];
 
    public function user() {
@@ -25,8 +25,8 @@ class Gameserver extends Eloquent {
       return $this->belongsTo('Game');
    }
 
-   public function ip() {
-      return $this->hasOne('GameserverIp');
+   public function ipport() {
+      return $this->belongsTo('GameserverIp');
    }
 
 }

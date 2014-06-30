@@ -22,7 +22,7 @@ class Game extends Eloquent {
    }
 
    public function gameservers() {
-      return $this->hasMany('Game');
+      return $this->hasMany('Gameserver');
    }
 
 } 

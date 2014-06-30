@@ -12,7 +12,7 @@ class CreateTableGamservers extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('users', function(Blueprint $table)
+		Schema::create('gameservers', function(Blueprint $table)
 		{
          $table->engine = 'InnoDB';
 
@@ -22,6 +22,9 @@ class CreateTableGamservers extends Migration {
          $table->softDeletes();
 
          $table->integer('weight')->default(100)->unsigned();
+
+         $table->integer('user_id')->unsigned();
+         $table->integer('game_id')->unsigned();
 
          $table->foreign('user_id')->references('id')->on('users');
          $table->foreign('game_id')->references('id')->on('games');
@@ -36,7 +39,7 @@ class CreateTableGamservers extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('users');
+		Schema::drop('gameservers');
 	}
 
 }

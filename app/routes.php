@@ -11,14 +11,31 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
+Route::get('/', function() {
+    return Redirect::to('/dashboard');
 });
 
-Route::resource('user', 'UserController');
-Route::resource('game', 'GameController');
-Route::resource('gameserver', 'GameserverController');
-Route::resource('host', 'HostController');
-Route::resource('script', 'ScriptController');
-Route::resource('ticket', 'TicketController');
+//Route::get('/dashboard', ['as' => 'user_dashboard', 'uses' => 'UserController@showDashboard']);
+//Route::get('/gameserver', ['as' => 'user_gameserver_list', 'uses' => 'UserController@showGameserverList']);
+
+//Route::get('user/profile', 'UserController@showProfile');
+
+Route::resource('/gameserver', 'GameserverController');
+
+//App::missing(function($exception)
+//{
+//    return Response::view('errors.404', array(), 404);
+//});
+
+// API KRAMS
+
+// Restfull Routing :)
+Route::resource('res/user', 'UserController');
+Route::resource('res/game', 'GameController');
+//Route::resource('res/gameserver', 'GameserverController');
+Route::resource('res/host', 'HostController');
+Route::resource('res/script', 'ScriptController');
+Route::resource('res/ticket', 'TicketController');
+
+// Last but not least ...
+Route::controller('/', 'UserController');

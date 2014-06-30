@@ -1,86 +1,42 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: mgade
+ * Date: 30.06.14
+ * Time: 05:18
+ */
 
-class UserController extends \BaseController {
+class UserController extends BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
+    /**
+     * The layout that should be used for responses.
+     */
+    protected $layout = 'user.home';
 
+    /**
+     * Show the user profile.
+     */
+    public function getProfile()
+    {
+        return View::make('user/profile');
+    }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
+    public function getDashboard()
+    {
+        return View::make('user/home');
+    }
 
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
+    public function getGameserverList()
+    {
+        return View::make('user/gameserver_list');
+    }
+    public function getChangePassword()
+    {
+        return View::make('user/change_password');
+    }
+    public function getSupportTickets()
+    {
+        return View::make('user/support_tickets');
+    }
 
 }

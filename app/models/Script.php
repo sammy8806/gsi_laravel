@@ -10,7 +10,7 @@ class Script extends Eloquent {
 
     protected $table = 'scripts';
 
-    protected $fillable = ['name', 'interpreter', 'commands'];
+    protected $fillable = ['name', 'interpreter', 'commands', 'type'];
 
     public function games() {
         return $this->belongsToMany('Game', 'games_scripts');

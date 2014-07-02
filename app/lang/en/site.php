@@ -36,6 +36,21 @@ return [
         'delete_server' => 'Delete Gameserver',
         'reinstall_server' => 'Reinstall Gameserver',
         'change_settings' => 'change Settings'
+    ],
+    'userprofile' => [
+        'username' => 'Username',
+        'profile' => 'My Profile',
+        'updatePassword' => 'Change Password'
+    ],
+    'user_list' => [
+        'id' => 'ID',
+        'fist_name' => 'First Name',
+        'last_name' => 'Last Name',
+        'login_name' => 'Login Name',
+        'email' => 'Email',
+        'last_login' => 'Last Login',
+        'status' => 'Status',
+        'actions' => 'Actions'
     ]
 
 ];

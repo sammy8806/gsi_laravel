@@ -54,6 +54,11 @@
                         <span class="icon-user"></span> {{{ Lang::get('site.navi.users') }}}
                      </a>
                   </li>
+                  <li>
+                     <a href="{{{ URL::action('ScriptController@index') }}}">
+                        <span class="icon-file-text   "></span> {{{ Lang::get('site.navi.scripts') }}}
+                     </a>
+                  </li>
 <!--                  <li>-->
 <!--                     <a href="{{{ URL::action('UserController@getSupportTickets') }}}">-->
 <!--                        <span class="icon-comment"></span> {{{ Lang::get('site.navi.support') }}}-->

@@ -13,7 +13,7 @@ class Script extends Eloquent {
     protected $fillable = ['name', 'interpreter', 'commands'];
 
     public function games() {
-        return $this->belongsTo('Game');
+        return $this->belongsToMany('Game', 'games_scripts');
     }
 
-} 
+}

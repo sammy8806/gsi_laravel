@@ -99,7 +99,7 @@ class GameserverController extends \BaseController {
    public function show($id) {
       $gameserver = Gameserver::find($id);
 
-      return View::make('user/gameserver_show', compact($gameserver));
+      return View::make('user/gameserver_show', ['gameserver' => $gameserver]);
    }
 
 

@@ -8,11 +8,12 @@
 
 class ActionController extends BaseController {
 
-   public function push() {
+   public function push($host, $commands) {
 
-      $req = new \Jyggen\Curl\Request('http://176.100.32.2:8080');
+      $req = new \Jyggen\Curl\Request('http://' . $host);
       $req->setOption(CURLOPT_FOLLOWLOCATION, true);
       $req->setOption(CURLOPT_POST, true);
+      $req->setOption(CURLOPT_POSTFIELDS, ['commandline' => $commands]);
       $req->execute();
 
       if ($req->isSuccessful()) {

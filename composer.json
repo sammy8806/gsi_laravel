@@ -5,14 +5,15 @@
 	"license": "CC-BY-SA",
 	"require": {
 		"laravel/framework": "4.2.*",
-        "barryvdh/laravel-ide-helper": "1.*"
+        "barryvdh/laravel-ide-helper": "1.*",
+        "jyggen/curl": "4.0.*@dev"
 	},
 	"autoload": {
 		"classmap": [
 			"app/commands",
 			"app/controllers",
 			"app/models",
-			"app/database/migrations",
+			"app/database/migratiosns",
 			"app/database/seeds",
 			"app/tests/TestCase.php"
 		]

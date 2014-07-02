@@ -10,6 +10,7 @@ Route::group(['before' => 'auth', 'prefix' => 'user'], function () {
    Route::resource('game', 'GameController');
    Route::resource('ip', 'IpController');
    Route::resource('user', 'UserController');
+   Route::resource('scripts', 'ScriptController');
 
    Route::resource('res/user', 'UserController');
    Route::resource('res/game', 'GameController');

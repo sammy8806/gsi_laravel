@@ -16,14 +16,14 @@
          <div class="content">
             <table class="table table-bordered table-striped">
                <tr>
-                  <th>ID</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Login Name</th>
-                  <th>Email</th>
-                  <th>Last Login</th>
-                  <th>Status</th>
-                  <th>Actions</th>
+                  <th>{{{ Lang::get('site.user_list.id')}}}</th>
+                  <th>{{{ Lang::get('site.user_list.fist_name')}}}</th>
+                  <th>{{{ Lang::get('site.user_list.last_name')}}}</th>
+                  <th>{{{ Lang::get('site.user_list.login_name')}}}</th>
+                  <th>{{{ Lang::get('site.user_list.email')}}}</th>
+                  <th>{{{ Lang::get('site.user_list.last_login')}}}</th>
+                  <th>{{{ Lang::get('site.user_list.status')}}}</th>
+                  <th>{{{ Lang::get('site.user_list.actions')}}}</th>
                </tr>
                @foreach($users as $user)
                <tr>

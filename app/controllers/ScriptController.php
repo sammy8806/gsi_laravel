@@ -9,7 +9,7 @@ class ScriptController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		return View::make('admin.script_list', ['scripts' => Script::all()]);
 	}
 
 
@@ -20,7 +20,7 @@ class ScriptController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+        return View::make('admin.script_add', ['script' => new Script()]);
 	}
 
 
@@ -31,7 +31,26 @@ class ScriptController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+
+        $rules = [
+            'name' => 'AlphaNum|Required',
+            'interpreter' => '',
+            'type' => 'AlphaNum|Required',
+            'commands' => 'Required'
+        ];
+
+        $v = Validator::make(Input::all(), $rules);
+
+        if($v->passes()) {
+            $script = new Script();
+            $script->fill(Input::all());
+            $script->save();
+
+            return Redirect::action('ScriptController@index');
+        } else {
+            return Redirect::action('ScriptController@index')->withErrors($v->getMessageBag());
+        }
+
 	}
 
 

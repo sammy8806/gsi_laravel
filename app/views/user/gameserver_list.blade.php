@@ -28,17 +28,17 @@
                @foreach ($gameservers as $gameserver)
                <tr>
                   <td>
-                     <a href="{{ URL::action('GameserverController@show', array('$gameserver->id')) }}">
+                     <a href="{{ URL::action('GameserverController@show', array($gameserver->id)) }}">
                         {{$gameserver->ipport->ip->ip}}:{{$gameserver->ipport->port}}
                      </a>
                   </td>
                   <td>
-                     <a href="{{ URL::action('GameserverController@show', array('$gameserver->id')) }}">
+                     <a href="{{ URL::action('GameserverController@show', array($gameserver->id)) }}">
                         {{$gameserver->displayName }}
                      </a>
                   </td>
                   <td>
-                     <a href="{{ URL::action('GameserverController@show', array('$gameserver->id')) }}">
+                     <a href="{{ URL::action('GameserverController@show', array($gameserver->id)) }}">
                         {{$gameserver->status }}
                      </a>
                   </td>

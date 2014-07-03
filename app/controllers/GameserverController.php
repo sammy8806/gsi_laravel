@@ -210,7 +210,8 @@ class GameserverController extends \BaseController {
     * @return Response
     */
    public function destroy($id) {
-      //
+      GameserverIp::destroy(Gameserver::findOrFail($id));
+      Gameserver::destroy($id);
    }
 
 }

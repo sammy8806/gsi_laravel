@@ -30,7 +30,7 @@ class ScriptController extends \BaseController {
    public function store() {
 
       $rules = [
-            'name'        => 'AlphaNum|Required',
+            'name'        => 'Required',
             'interpreter' => '',
             'type'        => 'AlphaNum|Required',
             'commands'    => 'Required'
@@ -45,7 +45,7 @@ class ScriptController extends \BaseController {
 
          return Redirect::action('ScriptController@index');
       } else {
-         return Redirect::action('ScriptController@index')->withErrors($v->getMessageBag());
+         return Redirect::action('ScriptController@create')->withInput(Input::all())->withErrors($v->getMessageBag());
       }
 
    }
@@ -83,7 +83,26 @@ class ScriptController extends \BaseController {
     * @return Response
     */
    public function update($id) {
-      //
+
+      $rules = [
+            'name'        => 'Required',
+            'interpreter' => '',
+            'type'        => 'AlphaNum|Required',
+            'commands'    => 'Required'
+      ];
+
+      $v = Validator::make(Input::all(), $rules);
+
+      if ($v->passes()) {
+         $script = Script::findOrFail($id);
+         $script->fill(Input::all());
+         $script->save();
+
+         return Redirect::action('ScriptController@index');
+      } else {
+         return Redirect::action('ScriptController@create')->withInput(Input::all())->withErrors($v->getMessageBag());
+      }
+
    }
 
 

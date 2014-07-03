@@ -31,7 +31,7 @@
                           <i class="icon-edit-sign"></i>
                           Edit
                       </a>
-                     <a class="btn btn-xs btn-danger" data-method="delete" href="{{ URL::action('ScriptController@destroy', [$script->id]) }}">
+                     <a class="btn btn-xs btn-danger" data-method="DELETE" href="{{ URL::action('ScriptController@destroy', [$script->id]) }}">
                         <i class="icon-remove-sign"></i>
                         Delete
                      </a>

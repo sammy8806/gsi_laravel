@@ -28,6 +28,8 @@ class ActionController extends BaseController {
       }
 
       $req = new \Jyggen\Curl\Request('http://' . $host);
+      $req->setOption(CURLOPT_CONNECTTIMEOUT, 1);
+      $req->setOption(CURLOPT_TIMEOUT, 1);
       $req->setOption(CURLOPT_FOLLOWLOCATION, true);
       $req->setOption(CURLOPT_POST, true);
       $req->setOption(CURLOPT_POSTFIELDS, 'commandline='.urlencode($commands));
@@ -43,4 +45,4 @@ class ActionController extends BaseController {
 
    }
 
-} 
+}

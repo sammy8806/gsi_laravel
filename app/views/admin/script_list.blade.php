@@ -27,6 +27,10 @@
                   <td>{{ $script->interpreter }}</td>
                   <td>{{ $script->type }}</td>
                   <td>
+                      <a class="btn btn-xs btn-link" href="{{ URL::action('ScriptController@edit', [$script->id]) }}">
+                          <i class="icon-edit-sign"></i>
+                          Edit
+                      </a>
                      <a class="btn btn-xs btn-danger" data-method="delete" href="{{ URL::action('ScriptController@destroy', [$script->id]) }}">
                         <i class="icon-remove-sign"></i>
                         Delete

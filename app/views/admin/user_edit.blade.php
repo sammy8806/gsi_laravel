@@ -20,7 +20,7 @@
             <h2>User Add</h2>
          </div>
          <div class="content controls">
-            {{ Form::model($user, ['method' => 'POST', 'action' => ['UserController@store']]) }}
+            {{ Form::model($user, ['method' => 'PATCH', 'action' => ['UserController@update', $user->id]]) }}
 @include('admin._user_form')
             {{ Form::close() }}
          </div>

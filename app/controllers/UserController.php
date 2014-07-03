@@ -92,6 +92,11 @@ class UserController extends BaseController {
       }
    }
 
+
+    public function edit($id){
+        return View::make('admin.user_edit', ['user' => Game::findOrFail($id)]);
+    }
+
    public function store() {
       $rules = [
             'first_name'      => 'AlphaNum',

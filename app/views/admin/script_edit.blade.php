@@ -8,7 +8,7 @@
             <h2>SCRIPT ADD</h2>
          </div>
          <div class="content controls">
-            {{ Form::model($script, ['method' => 'PATCH', 'action' => ['ScriptController@store', $script->id]]) }}
+            {{ Form::model($script, ['method' => 'POST', 'action' => ['ScriptController@store']]) }}
 @include('admin._script_form')
             {{ Form::close() }}
          </div>

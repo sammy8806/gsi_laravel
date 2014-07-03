@@ -71,7 +71,7 @@ class ScriptController extends \BaseController {
     * @return Response
     */
    public function edit($id) {
-      //
+       return View::make('admin.script_edit', ['script' => Script::findOrFail($id)]);
    }
 
 

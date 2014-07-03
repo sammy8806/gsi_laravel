@@ -26,7 +26,7 @@ class Ticket extends Eloquent {
    }
 
    public function category() {
-      return $this->has('TicketCategory');
+      return $this->belongsTo('TicketCategory');
    }
 
    public function tickets() {

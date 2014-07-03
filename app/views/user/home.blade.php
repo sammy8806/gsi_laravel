@@ -40,7 +40,7 @@
     <div class="col-md-3">
         <div class="block">
             <div class="content">
-                <a href="{{{ URL::action('UserController@getSupportTickets') }}}">
+                <a href="{{{ URL::action('TicketController@index') }}}">
                     <h1><i class="icon-pencil"></i></h1>
                     <h3>{{{ Lang::get('site.navi.ticket') }}}</h3>
                 </a>

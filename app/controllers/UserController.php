@@ -21,11 +21,11 @@ class UserController extends BaseController {
          $id = Auth::user()->id;
       }
 
-      return View::make('user/profile', ['user' => User::findOrFail($id)]);
+      return View::make('user.profile', ['user' => User::findOrFail($id)]);
    }
 
    public function getDashboard() {
-      return View::make('user/home');
+      return View::make('user.home');
    }
 
    public function getChangePassword($id = null) {
@@ -33,19 +33,19 @@ class UserController extends BaseController {
          $id = Auth::user()->id;
       }
 
-      return View::make('user/change_password', ['user' => User::findOrFail($id)]);
+      return View::make('user.change_password', ['user' => User::findOrFail($id)]);
    }
 
    public function getSupportTickets() {
-      return View::make('user/support_tickets');
+      return View::make('user.support_tickets');
    }
 
    public function index() {
-      return View::make('admin/user_list', ['users' => User::all()]);
+      return View::make('admin.user_list', ['users' => User::all()]);
    }
 
    public function create() {
-      return View::make('admin/user_create', ['user' => new User()]);
+      return View::make('admin.user_create', ['user' => new User()]);
    }
 
    public function update($id) {
@@ -120,7 +120,7 @@ class UserController extends BaseController {
 
          return Redirect::action('UserController@index');
       } else {
-         return Redirect::route('UserController@create')->withErrors($v->getMessageBag());
+         return Redirect::action('UserController@create')->withErrors($v->getMessageBag());
       }
    }
 

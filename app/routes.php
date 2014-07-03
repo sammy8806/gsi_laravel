@@ -12,6 +12,7 @@ Route::group(['before' => 'auth', 'prefix' => 'user'], function () {
    Route::resource('ip', 'IpController');
    Route::resource('user', 'UserController');
    Route::resource('scripts', 'ScriptController');
+   Route::resource('ticket', 'TicketController');
 
    Route::controller('action', 'ActionController');
 

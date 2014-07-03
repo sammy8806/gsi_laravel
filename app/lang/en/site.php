@@ -35,7 +35,8 @@ return [
         'gameserver_add' => 'Add Gameserver',
         'delete_server' => 'Delete Gameserver',
         'reinstall_server' => 'Reinstall Gameserver',
-        'change_settings' => 'change Settings'
+        'change_settings' => 'Change Settings',
+        'scripts' => 'Scripts'
     ],
     'userprofile' => [
         'username' => 'Username',

@@ -6,6 +6,24 @@
 @stop
 
 @section('content')
+@if(Session::has('errors'))
+<div class="block">
+   @foreach(Session::get('errors')->getMessages() as $error)
+   @foreach($error as $error_data)
+   <div class="alert alert-danger">
+      <b>Error:</b> {{ $error_data }}
+   </div>
+   @endforeach
+   @endforeach
+</div>
+@endif
+@if(Session::has('flash_notice'))
+<div class="block">
+   <div class="alert alert-danger">
+      <b>{{{ Session::get('flash_notice') }}}</b>
+   </div>
+</div>
+@endif
 <div class="row">
    <div class="col-md-12">
       <div class="block">

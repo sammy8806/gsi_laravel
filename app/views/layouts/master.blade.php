@@ -56,7 +56,7 @@
                   </li>
                   <li>
                      <a href="{{{ URL::action('ScriptController@index') }}}">
-                        <span class="icon-file-text   "></span> {{{ Lang::get('site.navi.scripts') }}}
+                        <span class="icon-file-text"></span> {{{ Lang::get('site.navi.scripts') }}}
                      </a>
                   </li>
 <!--                  <li>-->

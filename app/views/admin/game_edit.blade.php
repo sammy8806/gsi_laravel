@@ -5,16 +5,14 @@
    <div class="col-md-6">
       <div class="block">
          <div class="header">
-            <h2>GAME ADD</h2>
+            <h2>GAME EDIT</h2>
          </div>
          <div class="content controls">
-            {{ Form::model($game, ['method' => 'POST', 'action' => ['GameController@store']]) }}
-@include('admin._game_form')
+            {{ Form::model($game, ['method' => 'PATCH', 'action' => ['GameController@update', $game->id]]) }}
+            @include('admin._game_form')
             {{ Form::close() }}
          </div>
       </div>
    </div>
 </div>
-
-
 @stop

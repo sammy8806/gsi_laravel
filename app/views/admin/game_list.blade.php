@@ -17,13 +17,27 @@
             <table class="table table-bordered table-striped">
                <tr>
                   <th>Game</th>
+                  <th>Shorty</th>
+                  <th>Live-Console</th>
+                  <th>Check-Type</th>
                   <th>Actions</th>
                </tr>
                @foreach($games as $game)
                <tr>
                   <td>{{ $game->name }}</td>
+                  <td>{{ $game->short }}</td>
+                  <td>{{ ($game->live_console) ? "True" : "False" }}</td>
+                  <td>{{ $game->check_type }}</td>
                   <td>
-                     <a class="btn btn-xs btn-danger" data-method="delete" href="{{ URL::action('GameController@destroy', [$game->id]) }}">
+                     <a class="btn btn-xs btn-link" href="{{ URL::action('GameController@edit', [$game->id]) }}">
+                        <i class="icon-edit-sign"></i>
+                        Edit
+                     </a>
+                     <a class="btn btn-xs btn-link" href="{{ URL::action('GameController@getScript', [$game->id]) }}">
+                        <i class="icon-file-text"></i>
+                        Scripts
+                     </a>
+                     <a class="btn btn-xs btn-danger" data-method="DELETE" href="{{ URL::action('GameController@destroy', [$game->id]) }}">
                         <i class="icon-remove-sign"></i>
                         Delete
                      </a>
@@ -47,7 +61,7 @@
 
       $.ajax({
          url: $(this).attr('href'),
-         type: 'DELETE',
+         type: $(this).data('method'),
          success: function(data, textStatus, jqXHR) {
             console.log('delete success');
             window.location.reload()

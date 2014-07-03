@@ -12,6 +12,7 @@ return [
         'gameserver' => 'My Gameserver',
         'support' => 'Help',
         'logout' => 'Logout',
+        'scripts' => 'Scripts'
     ],
     'gameserver' => [
         'connection_info' => 'Connection info',
@@ -46,6 +47,16 @@ return [
     'user_list' => [
         'id' => 'ID',
         'fist_name' => 'First Name',
+        'last_name' => 'Last Name',
+        'login_name' => 'Login Name',
+        'email' => 'Email',
+        'last_login' => 'Last Login',
+        'status' => 'Status',
+        'actions' => 'Actions'
+    ],
+    'script' => [
+        'add' => 'add Script',
+        'scripts' => 'Scripts',
         'last_name' => 'Last Name',
         'login_name' => 'Login Name',
         'email' => 'Email',

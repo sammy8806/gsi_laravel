@@ -23,6 +23,10 @@
                <tr>
                   <td>{{ $ip->ip }}</td>
                   <td>
+                      <a class="btn btn-xs btn-link" href="{{ URL::action('IpController@edit', [$ip->id]) }}">
+                          <i class="icon-edit-sign"></i>
+                          Edit
+                      </a>
                      <a class="btn btn-xs btn-danger" data-method="delete" href="{{ URL::action('IpController@destroy', [$ip->id]) }}">
                         <i class="icon-remove-sign"></i>
                         Delete

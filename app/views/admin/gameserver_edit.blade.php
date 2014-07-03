@@ -20,7 +20,7 @@
             <h2>IP ADD</h2>
          </div>
          <div class="content controls">
-            {{ Form::model($gameserver, ['method' => 'POST', 'action' => ['GameserverController@store']]) }}
+            {{ Form::model($gameserver, ['method' => 'PATCH', 'action' => ['GameserverController@update',$gameserver->id]]) }}
             @include('admin._gameserver_form')
             {{ Form::close() }}
          </div>

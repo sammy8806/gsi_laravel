@@ -22,17 +22,17 @@ class GameserverController extends \BaseController {
    public function create() {
 
       $games = [];
-      foreach(Game::all() as $game) {
+      foreach (Game::all() as $game) {
          $games[$game->id] = $game->name;
       }
 
       $ips = [];
-      foreach(Ip::all() as $ip) {
+      foreach (Ip::all() as $ip) {
          $ips[$ip->id] = $ip->ip;
       }
 
       $users = [];
-      foreach(User::all() as $user) {
+      foreach (User::all() as $user) {
          $users[$user->id] = $user->email;
       }
 
@@ -55,7 +55,7 @@ class GameserverController extends \BaseController {
             'memory'      => 'Integer|Min:128|Max:10240', // from 128MB to 10G
             'status'      => 'Required',
             'ip'          => 'Required',
-            'port'        => 'Integer|Min:2048|Max:65534|Required',
+            'port'        => 'Integer|Min:1024|Max:65534|Required',
             'displayName' => '',
             'user'        => 'Required|Exists:users,id'
       ];
@@ -99,7 +99,7 @@ class GameserverController extends \BaseController {
    public function show($id) {
       $gameserver = Gameserver::find($id);
 
-      return View::make('user/gameserver_show', ['gameserver' => $gameserver]);
+      return View::make('user.gameserver_show', ['gameserver' => $gameserver]);
    }
 
 
@@ -111,7 +111,34 @@ class GameserverController extends \BaseController {
     * @return Response
     */
    public function edit($id) {
-      //
+
+      $gameserver =  Gameserver::findOrFail($id);
+
+      $games = [];
+      foreach (Game::all() as $game) {
+         $games[$game->id] = $game->name;
+      }
+
+      $ips = [];
+      foreach (Ip::all() as $ip) {
+         $ips[$ip->id] = $ip->ip;
+      }
+
+      $users = [];
+      foreach (User::all() as $user) {
+         $users[$user->id] = $user->email;
+      }
+
+      $port = $gameserver->ipport->port;
+
+      return View::make('admin.gameserver_edit', [
+            'gameserver' => $gameserver,
+            'games'      => $games,
+            'ips'        => $ips,
+            'users'      => $users,
+            'port'       => $port
+      ]);
+
    }
 
 
@@ -123,7 +150,41 @@ class GameserverController extends \BaseController {
     * @return Response
     */
    public function update($id) {
-      //
+      $rules = [
+            'slot'        => 'Integer',
+            'memory'      => 'Integer|Min:128|Max:10240', // from 128MB to 10G
+            'status'      => 'Required',
+            'ip'          => 'Required',
+            'port'        => 'Integer|Min:1024|Max:65534|Required',
+            'displayName' => '',
+            'user'        => 'Required|Exists:users,id'
+      ];
+
+      $v = Validator::make(Input::all(), $rules);
+
+      if ($v->passes()) {
+
+         $ip_port = new GameserverIp();
+         $ip_port->port = Input::get('port');
+
+         $ip = Ip::find(Input::get('ip'));
+         $ip_port->ip()->associate($ip);
+         $ip_port->save();
+
+         $user = User::find(Input::get('user'));
+         $game = Game::find(Input::get('game'));
+
+         $gameserver = Gameserver::findOrFail($id);
+         $gameserver->fill(Input::all());
+         $gameserver->ipport()->associate($ip_port);
+         $gameserver->user()->associate($user);
+         $gameserver->game()->associate($game);
+         $gameserver->save();
+
+         return Redirect::action('GameserverController@show', $id);
+      } else {
+         return Redirect::action('GameserverController@update', $id)->withErrors($v->getMessageBag());
+      }
    }
 
 

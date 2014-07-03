@@ -60,7 +60,12 @@
                         {{$gameserver->status }}
                      </a>
                   </td>
-                  <td>Start | Stop</td>
+                  <td>
+                     <a class="btn btn-xs btn-link" href="{{ URL::action('GameserverController@edit', [$gameserver->id]) }}">
+                        <i class="icon-edit-sign"></i>
+                        Edit
+                     </a>
+                  </td>
                </tr>
                @endforeach
                </tbody>

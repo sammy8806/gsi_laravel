@@ -163,19 +163,9 @@ class GameserverController extends \BaseController {
             'user'        => 'Required|Exists:users,id'
       ];
 
-      $rules = [];
-
       $v = Validator::make(Input::all(), $rules);
 
       if ($v->passes()) {
-//         $ip_port = new GameserverIp();
-//         $ip_port->port = Input::get('port');
-//
-//         $ip = Ip::find(Input::get('ip'));
-//         $ip_port->ip()->associate($ip);
-//         $ip_port->save();
-
-
 
          $user = User::find(Input::get('user'));
          $game = Game::find(Input::get('game'));

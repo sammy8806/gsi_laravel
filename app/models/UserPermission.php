@@ -2,11 +2,9 @@
 
 class UserPermission extends Eloquent {
 
-   protected $table = 'user_permission';
-
-   protected $fillable = ['name', 'display_name'];
-
    public $timestamps = false;
+   protected $table = 'user_permission';
+   protected $fillable = ['name', 'display_name'];
 
    public function users() {
       return $this->belongsToMany('Users');

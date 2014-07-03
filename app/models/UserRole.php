@@ -8,11 +8,9 @@
 
 class UserRole extends Eloquent {
 
-   protected $table = 'user_role';
-
-   protected $fillable = ['name'];
-
    public $timestamps = false;
+   protected $table = 'user_role';
+   protected $fillable = ['name'];
 
    public function rights() {
       return $this->hasMany('UserRight');

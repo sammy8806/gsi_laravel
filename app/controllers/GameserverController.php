@@ -112,16 +112,11 @@ class GameserverController extends \BaseController {
     */
    public function edit($id) {
 
-      $gameserver =  Gameserver::findOrFail($id);
+      $gameserver = Gameserver::findOrFail($id);
 
       $games = [];
       foreach (Game::all() as $game) {
          $games[$game->id] = $game->name;
-      }
-
-      $ips = [];
-      foreach (Ip::all() as $ip) {
-         $ips[$ip->id] = $ip->ip;
       }
 
       $users = [];
@@ -129,14 +124,22 @@ class GameserverController extends \BaseController {
          $users[$user->id] = $user->email;
       }
 
+      $ips = [];
+      foreach (Ip::all() as $ip) {
+         $ips[$ip->id] = $ip->ip;
+      }
+
       $port = $gameserver->ipport->port;
 
       return View::make('admin.gameserver_edit', [
-            'gameserver' => $gameserver,
-            'games'      => $games,
-            'ips'        => $ips,
-            'users'      => $users,
-            'port'       => $port
+            'gameserver'    => $gameserver,
+            'games'         => $games,
+            'ips'           => $ips,
+            'users'         => $users,
+            'port'          => $port,
+            'game_selected' => $gameserver->game->id,
+            'user_selected' => $gameserver->user->id,
+            'ip_selected'   => $gameserver->ipport->ip->id
       ]);
 
    }
@@ -160,28 +163,49 @@ class GameserverController extends \BaseController {
             'user'        => 'Required|Exists:users,id'
       ];
 
+      $rules = [];
+
       $v = Validator::make(Input::all(), $rules);
 
       if ($v->passes()) {
+//         $ip_port = new GameserverIp();
+//         $ip_port->port = Input::get('port');
+//
+//         $ip = Ip::find(Input::get('ip'));
+//         $ip_port->ip()->associate($ip);
+//         $ip_port->save();
 
-         $ip_port = new GameserverIp();
-         $ip_port->port = Input::get('port');
 
-         $ip = Ip::find(Input::get('ip'));
-         $ip_port->ip()->associate($ip);
-         $ip_port->save();
 
          $user = User::find(Input::get('user'));
          $game = Game::find(Input::get('game'));
 
+         /** @var Gameserver $gameserver */
          $gameserver = Gameserver::findOrFail($id);
          $gameserver->fill(Input::all());
-         $gameserver->ipport()->associate($ip_port);
+
+         /** @var GameserverIp $ipport */
+         $ipport = $gameserver->ipport;
+
+         if($gameserver->ipport->ip->id != Input::get('ip')) {
+            $ipport->ip()->associate(Ip::findOrFail(Input::get('ip')));
+            $ipport->save();
+         }
+
+         if($gameserver->ipport->port != Input::get('port')) {
+            $ipport->port = Input::get('port');
+            $ipport->save();
+         }
+
          $gameserver->user()->associate($user);
-         $gameserver->game()->associate($game);
+
+         if ($gameserver->game->id != $game->id) {
+            $gameserver->game()->associate($game);
+         }
+
          $gameserver->save();
 
-         return Redirect::action('GameserverController@show', $id);
+         return Redirect::action('GameserverController@index');
       } else {
          return Redirect::action('GameserverController@update', $id)->withErrors($v->getMessageBag());
       }

@@ -9,7 +9,7 @@
          </div>
          <div class="content controls">
             {{ Form::model($game, ['method' => 'PATCH', 'action' => ['GameController@update', $game->id]]) }}
-@include('admin._game_form')
+            @include('admin._game_form')
             {{ Form::close() }}
          </div>
       </div>

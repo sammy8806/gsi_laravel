@@ -1,29 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <title>Taurus</title>
+   <!--    <base href="http://cp.play-arena.de/public/" />-->
+   <title>Play-Arena Control Panel</title>
 
-   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-   <link rel="icon" type="image/ico" href="favicon.ico">
+   <link rel="icon" type="image/ico" href="favicon.ico"/>
 
-   <link href="/assets/css/stylesheets.css" rel="stylesheet" type="text/css">
+   <link href="/assets/css/stylesheets.css" rel="stylesheet" type="text/css"/>
 
-   <script type="text/javascript" src="/assets/js/plugins/jquery/jquery.min.js"></script>
-   <script type="text/javascript" src="/assets/js/plugins/jquery/jquery-ui.min.js"></script>
-   <script type="text/javascript" src="/assets/js/plugins/jquery/jquery-migrate.min.js"></script>
-   <script type="text/javascript" src="/assets/js/plugins/jquery/globalize.js"></script>
-   <script type="text/javascript" src="/assets/js/plugins/bootstrap/bootstrap.min.js"></script>
 
-   <script type="text/javascript" src="/assets/js/plugins/uniform/jquery.uniform.min.js"></script>
-
-   <script type="text/javascript" src="/assets/js/plugins.js"></script>
-   <script type="text/javascript" src="/assets/js/actions.js"></script>
-   <script type="text/javascript" src="/assets/js/settings.js"></script>
 </head>
-<body class="bg-img-num1">
 
-<div class="container">
+<body class="wall-num6">
+<div class="container theme-black container-fixed">
 
    <div class="login-block">
       <div class="block block-transparent">
@@ -103,6 +94,16 @@
    </div>
 
 </div>
+<script type="text/javascript" src="/assets/js/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/plugins/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/assets/js/plugins/jquery/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="/assets/js/plugins/jquery/globalize.js"></script>
+<script type="text/javascript" src="/assets/js/plugins/bootstrap/bootstrap.min.js"></script>
 
+<script type="text/javascript" src="/assets/js/plugins/uniform/jquery.uniform.min.js"></script>
+
+<script type="text/javascript" src="/assets/js/plugins.js"></script>
+<script type="text/javascript" src="/assets/js/actions.js"></script>
+<!--<script type="text/javascript" src="/assets/js/settings.js"></script>-->
 </body>
 </html>

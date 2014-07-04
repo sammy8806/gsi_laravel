@@ -10,14 +10,13 @@
 
    <link href="/assets/css/stylesheets.css" rel="stylesheet" type="text/css"/>
 
-
 </head>
 
 <body class="wall-num6">
+
 <div class="container theme-black container-fixed">
    <div class="row">
       <div class="col-md-12">
-
          <nav class="navbar brb" role="navigation">
             <div class="navbar-header">
                <button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -25,7 +24,9 @@
                   <span class="sr-only">Toggle navigation</span>
                   <span class="icon-reorder"></span>
                </button>
-               <a class="navbar-brand" href="#"><img src="/assets/img/logo.png"/></a>
+               <a class="navbar-brand" href="#">
+                  <img src="/assets/img/logo.png"/>
+               </a>
             </div>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                <ul class="nav navbar-nav">
@@ -59,17 +60,18 @@
                         <span class="icon-file-text"></span> {{{ Lang::get('site.navi.scripts') }}}
                      </a>
                   </li>
-<!--                  <li>-->
-<!--                     <a href="{{{ URL::action('UserController@getSupportTickets') }}}">-->
-<!--                        <span class="icon-comment"></span> {{{ Lang::get('site.navi.support') }}}-->
-<!--                     </a>-->
-<!--                  </li>-->
+                  <!--                  <li>-->
+                  <!--                     <a href="{{{ URL::action('UserController@getSupportTickets') }}}">-->
+                  <!--                        <span class="icon-comment"></span> {{{ Lang::get('site.navi.support') }}}-->
+                  <!--                     </a>-->
+                  <!--                  </li>-->
                   <li>
-                        <a href="{{ action('LoginController@getLogout') }}">
-                           <span class="icon-remove-sign"></span> {{{ Lang::get('site.navi.logout') }}} ({{ Auth::user()->customLoginName }})
-                        </a>
-                     </li>
-                  </ul>
+                     <a href="{{ action('LoginController@getLogout') }}">
+                        <span class="icon-remove-sign"></span> {{{ Lang::get('site.navi.logout') }}} ({{
+                        Auth::user()->customLoginName }})
+                     </a>
+                  </li>
+               </ul>
             </div>
          </nav>
 
@@ -94,8 +96,6 @@
          </ol>
       </div>
    </div>
-
-
 </div>
 @section('scripts')
 <script type='text/javascript' src='/assets/js/plugins/jquery/jquery.min.js'></script>
@@ -112,7 +112,7 @@
 
 <script type='text/javascript' src='/assets/js/plugins.js'></script>
 <script type='text/javascript' src='/assets/js/actions.js'></script>
-<script type='text/javascript' src='/assets/js/settings.js'></script>
+<!--<script type='text/javascript' src='/assets/js/settings.js'></script>-->
 @show
 </body>
 </html>

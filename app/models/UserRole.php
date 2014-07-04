@@ -9,15 +9,19 @@
 class UserRole extends Eloquent {
 
    public $timestamps = false;
-   protected $table = 'user_role';
-   protected $fillable = ['name'];
+   protected $table = 'role';
+   protected $fillable = ['displayName', 'description'];
 
-   public function rights() {
-      return $this->hasMany('UserRight');
+   public function permissions() {
+      return $this->belongsToMany('UserPermission');
    }
 
    public function group() {
       return $this->belongsToMany('Group');
+   }
+
+   public function users() {
+      return $this->belongsToMany('User');
    }
 
 } 

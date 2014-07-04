@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Auth\UserTrait;
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
+use Illuminate\Auth\Reminders\RemindableTrait;
+use Illuminate\Auth\UserInterface;
+use Illuminate\Auth\UserTrait;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
@@ -48,16 +48,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
       return $this->hasMany('Ticket');
    }
 
-   public function rights() {
-      return $this->hasMany('UserRight');
-   }
-
    public function groups() {
       return $this->hasMany('UserGroup');
    }
 
-   public function permissions() {
-      return $this->hasMany('UserPermission');
+   public function roles() {
+      return $this->hasMany('UserRole');
+   }
+
+   public function sightPermissions() {
+      return $this->hasMany('UserSightPermission');
    }
 
 //    public function tickets()

@@ -69,6 +69,7 @@ return [
             'ticket'      => 'My Support Tickets',
             'add'         => 'add new Ticket',
             'tickets_new' => 'add new Ticket'
+
       ]
 
 ];

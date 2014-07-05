@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: steven
@@ -7,7 +8,7 @@
  */
 class UserSightPermission extends Eloquent {
 
-   protected $table = 'sightPermissions';
+   protected $table = 'user_sight_permissions';
    protected $timestamps = false;
    protected $fillable = ['objectId', 'readPermission', 'writePermission', 'linkPermission', 'deletePermission'];
 

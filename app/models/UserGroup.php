@@ -8,7 +8,7 @@
  */
 class UserGroup extends Eloquent {
 
-   protected $table = 'groups';
+   protected $table = 'user_groups';
    protected $timestamps = false;
    protected $fillable = ['displayName', 'description'];
 

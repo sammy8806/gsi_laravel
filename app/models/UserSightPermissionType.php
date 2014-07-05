@@ -8,7 +8,7 @@
  */
 class UserSightPermissionType extends Eloquent {
 
-   protected $table = 'sightPermissionType';
+   protected $table = 'user_sight_permission_types';
    protected $timestamps = false;
    protected $fillable = ['objectName'];
 

@@ -74,7 +74,6 @@
                </ul>
             </div>
          </nav>
-
       </div>
    </div>
    <div class="row">
@@ -91,8 +90,8 @@
 
    <div class="row">
       <div class="col-md-12">
-         <ol class="breadcrumb">
-            &copy; 2014 Play-Arena.net - all right reserved.
+         <ol class="breadcrumb text-center">
+            &copy; 2014 Play-Arena.net - all rights reserved.
          </ol>
       </div>
    </div>

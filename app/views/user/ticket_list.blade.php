@@ -32,11 +32,6 @@
                         <i class="icon-edit-sign"></i>
                         Edit
                      </a>
-                     <a class="btn btn-xs btn-link"
-                        href="{{ URL::action('TicketController@getScript', [$ticket->id]) }}">
-                        <i class="icon-file-text"></i>
-                        Scripts
-                     </a>
                      <a class="btn btn-xs btn-danger" data-method="DELETE"
                         href="{{ URL::action('TicketController@destroy', [$ticket->id]) }}">
                         <i class="icon-remove-sign"></i>

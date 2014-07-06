@@ -71,7 +71,81 @@
                         Auth::user()->customLoginName }})
                      </a>
                   </li>
+
                </ul>
+               <span class="pull-right">
+               <ul class="nav navbar-nav">
+                  <li class="dropdown">
+                     <a href="/" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="/assets/img/flags/png/us.png"/>
+                        English</a>
+                     <ul class="dropdown-menu">
+                        <li>
+                        <a href="/" class="dropdown-toggle" data-toggle="dropdown">
+                           <img src="/assets/img/flags/png/us.png"/>
+                           English</a>
+                        </li>
+                        <li>
+                           <a href="/" class="dropdown-toggle" data-toggle="dropdown">
+                              <img src="/assets/img/flags/png/de.png"/>
+                              German </a>
+                        </li>
+                        <li>
+                           <a href="/" class="dropdown-toggle" data-toggle="dropdown">
+                              <img src="/assets/img/flags/png/ru.png"/>
+                              Russian </a>
+                        </li>
+                        <li>
+                           <a href="/" class="dropdown-toggle" data-toggle="dropdown">
+                              <img src="/assets/img/flags/png/fr.png"/>
+                              French </a>
+                        </li>
+                        <li>
+                           <a href="/" class="dropdown-toggle" data-toggle="dropdown">
+                              <img src="/assets/img/flags/png/es.png"/>
+                              Spanish </a>
+                        </li>
+                        <li>
+                           <a href="/" class="dropdown-toggle" data-toggle="dropdown">
+                              <img src="/assets/img/flags/png/nl.png"/>
+                              Dutch </a>
+                        </li>
+                        <li>
+                           <a href="/" class="dropdown-toggle" data-toggle="dropdown">
+                              <img src="/assets/img/flags/png/it.png"/>
+                              Italian </a>
+                        </li>
+                        <li>
+                           <a href="/" class="dropdown-toggle" data-toggle="dropdown">
+                              <img src="/assets/img/flags/png/se.png"/>
+                              Swedish </a>
+                        </li>
+                        <li>
+                           <a href="/" class="dropdown-toggle" data-toggle="dropdown">
+                              <img src="/assets/img/flags/png/be.png"/>
+                              Belgium </a>
+                        </li>
+                        <li>
+                           <a href="/" class="dropdown-toggle" data-toggle="dropdown">
+                              <img src="/assets/img/flags/png/cz.png"/>
+                              Czech </a>
+                        </li>
+                        <li>
+                           <a href="/" class="dropdown-toggle" data-toggle="dropdown">
+                              <img src="/assets/img/flags/png/pl.png"/>
+                              Polish </a>
+                        </li>
+
+                     </ul>
+                  </li>
+               </ul>
+               </span>
+               <!--               <ul class="dropdown navbar-right">-->
+               <!--                  <li>-->
+               <!--                     <img src="/assets/img/flags/png/us.png"/>-->
+               <!--                  </li>-->
+               <!--                  -->
+               <!--               </ul>-->
             </div>
          </nav>
       </div>

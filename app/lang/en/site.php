@@ -13,8 +13,8 @@ return [
             'support'           => 'Help',
             'logout'            => 'Logout',
             'scripts'           => 'Scripts',
-            'permission_groups' => 'B Groups',
-            'permission_roles'  => 'B Roles'
+            'permission_groups' => 'Groups',
+            'permission_roles'  => 'Roles'
       ],
       'gameserver'  => [
             'connection_info'  => 'Connection info',

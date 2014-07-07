@@ -57,7 +57,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
    }
 
    public function sightPermissions() {
-      return $this->hasMany('UserSightPermission');
+      return $this->belongsToMany('UserSightPermission', 'dep_sight_permission2user', 'user_id', 'sight_permission_id');
    }
 
 //    public function tickets()

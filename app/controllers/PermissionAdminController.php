@@ -37,14 +37,14 @@ class PermissionAdminController extends BaseController {
       /** @var UserRole $role */
       foreach (UserRole::all() as $role) {
          if (!in_array($role->id, $aff_roles)) {
-            $roles[$role->id] = $user->displayName;
+            $roles[$role->id] = $role->displayName;
          }
       }
 
       return View::make('admin.perm.group_edit', [
             'group' => UserGroup::find($id),
             'users' => $users,
-            'roles' => UserRole::all()
+            'roles' => $roles
       ]);
    }
 

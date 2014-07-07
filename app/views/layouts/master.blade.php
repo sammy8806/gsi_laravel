@@ -112,7 +112,7 @@
          <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                <span><img src="/assets/img/flags/png/us.png" class="icon-flag"/></span>
-               Englisch
+               English
             </a>
             <ul class="dropdown-menu">
                <li>

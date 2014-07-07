@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Steven
- * Date: 06.07.14
- * Time: 22:24
- */
 class PermissionAdminController extends BaseController {
 
    // Groups
@@ -85,7 +79,13 @@ class PermissionAdminController extends BaseController {
    }
 
    public function group_update($id) {
-      // Update an Group
+      $data = Input::all();
+
+      $group = UserGroup::findOrFail($id);
+      $group->fill($data);
+      $group->save();
+
+      return Redirect::route('perm.group.list');
    }
 
    public function group_destroy($id) {
@@ -211,37 +211,69 @@ class PermissionAdminController extends BaseController {
       UserRole::find($id)->delete();
    }
 
-   /*
-      // Permission
+   // Permission
 
-      public function getPermission($id = null) {
-         if ($id === null) {
-            return View::make('admin.perm.permission_list', UserPermission::all());
-         }
+   /**
+    * @param \Illuminate\Database\Eloquent\Model $type
+    * @param $target_id
+    * @param $data
+    *
+    * @return int
+    */
+   protected function sight_perm_add(Illuminate\Database\Eloquent\Model $type, $target_id, $data) {
+      $target = $type::findOrFail($target_id);
+
+      $perm = new UserSightPermission();
+      $perm->fill($data);
+      $perm->save();
+
+      return $target->sightPermissions()->attach($perm);
+   }
+
+   /**
+    * @param \Illuminate\Database\Eloquent\Model $type
+    * @param $target_id
+    * @param $perm_id
+    *
+    * @return int
+    */
+   protected function sight_perm_del(Illuminate\Database\Eloquent\Model $type, $target_id, $perm_id) {
+      $target = $type::findOrFail($target_id);
+      $perm = UserSightPermission::findOrFail($perm_id);
+
+      return $target->sightPermissions()->detach($perm);
+   }
+
+   public function sight_perm_user_add($id) {
+      if ($this->sight_perm_add('User', $id, Input::all())) {
+         return Redirect::intended();
+      } else {
+         return Redirect::intended();
       }
+   }
 
-      public function postPermission() {
-         // Add an Permission
+   public function sight_perm_user_remove($id) {
+      if ($this->sight_perm_del('User', $id, Input::get('permission'))) {
+         return Redirect::intended();
+      } else {
+         return Redirect::intended();
       }
+   }
 
-      public function patchPermisison($id) {
-         // Update an Permission
+   public function sight_perm_group_add($id) {
+      if ($this->sight_perm_add('UserGroup', $id, Input::all())) {
+         return Redirect::intended();
+      } else {
+         return Redirect::intended();
       }
+   }
 
-      // Sight-Permission Types
-
-      public function getSightPermissionType($id = null) {
-         if ($id === null) {
-            return View::make('admin.perm.sight_perm_list', UserSightPermissionType::all());
-         }
+   public function sight_perm_group_remove($id) {
+      if ($this->sight_perm_del('UserGroup', $id, Input::get('permission'))) {
+         return Redirect::intended();
+      } else {
+         return Redirect::intended();
       }
+   }
 
-      public function postSightPermissionType() {
-         // Add an Sight-Permission Type
-      }
-
-      public function patchSightPermissionType($id) {
-         // Updates an Sight-Permission Type
-      }
-   */
 }

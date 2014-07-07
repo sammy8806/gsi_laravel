@@ -84,7 +84,7 @@
       </div>
       <div class="block">
          <div class="header">
-            <h2>Affected groups</h2>
+            <h2>Affected Groups</h2>
          </div>
          <div class="content controls">
             @foreach($role->groups as $group)
@@ -105,6 +105,35 @@
             <div class="form-row">
                <div class="col-md-2">{{ Form::label('group', 'Add group:') }}</div>
                <div class="col-md-8">{{ Form::select('group', $groups) }}</div>
+               <div class="col-md-2">{{ Form::submit('Add') }}</div>
+            </div>
+            {{ Form::close() }}
+            @endif
+         </div>
+      </div>
+      <div class="block">
+         <div class="header">
+            <h2>Affected Permissions</h2>
+         </div>
+         <div class="content controls">
+            @foreach($role->permissions as $permission)
+            <div class="form-row">
+               <div class="col-md-2"><b>Permission</b></div>
+               <div class="col-md-8">{{{ $permission->displayName }}}</div>
+               <div class="col-md-2">
+                  <a class="btn btn-xs btn-danger" data-method="DELETE"
+                     href="{{ URL::route('perm.role.del_permission', $role->id) }}">
+                     <i class="icon-remove"></i>
+                  </a>
+               </div>
+            </div>
+            @endforeach
+
+            @if(count($permissions) != 0)
+            {{ Form::open(['method' => 'POST', 'route' => ['perm.role.add_permission', $role->id]]) }}
+            <div class="form-row">
+               <div class="col-md-2">{{ Form::label('permission', 'Add group:') }}</div>
+               <div class="col-md-8">{{ Form::select('permission', $groups) }}</div>
                <div class="col-md-2">{{ Form::submit('Add') }}</div>
             </div>
             {{ Form::close() }}

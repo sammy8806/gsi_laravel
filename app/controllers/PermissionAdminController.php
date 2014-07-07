@@ -113,6 +113,8 @@ class PermissionAdminController extends BaseController {
    }
 
    public function role_edit($id) {
+
+      // Users
       $aff_users = [];
 
       foreach (UserRole::find($id)->users as $user)
@@ -126,6 +128,7 @@ class PermissionAdminController extends BaseController {
          }
       }
 
+      // Groups
       $aff_groups = [];
 
       foreach (UserRole::find($id)->groups as $group)
@@ -139,10 +142,25 @@ class PermissionAdminController extends BaseController {
          }
       }
 
+      // Permissions
+      $aff_permissions = [];
+
+      foreach (UserRole::find($id)->permissions as $group)
+         $aff_permissions[] = $group->id;
+
+      $permissions = [];
+      /** @var UserPermission $permission */
+      foreach (UserPermission::all() as $permission) {
+         if (!in_array($permission->id, $aff_permissions)) {
+            $permissions[$permission->id] = $permission->displayName;
+         }
+      }
+
       return View::make('admin.perm.role_edit', [
-            'role'   => UserRole::findOrFail($id),
-            'users'  => $users,
-            'groups' => $groups
+            'role'        => UserRole::findOrFail($id),
+            'users'       => $users,
+            'groups'      => $groups,
+            'permissions' => $permissions
       ]);
    }
 
@@ -168,8 +186,25 @@ class PermissionAdminController extends BaseController {
       // return Redirect::route('perm.role.edit', $id);
    }
 
+   public function role_add_permission($id) {
+      UserRole::findOrFail($id)->groups()->attach(UserPermission::find(Input::get('permission')));
+
+      return Redirect::route('perm.role.edit', $id);
+   }
+
+   public function role_del_permission($id) {
+      UserRole::findOrFail($id)->groups()->detach(UserPermission::find(Input::get('permission')));
+      // return Redirect::route('perm.role.edit', $id);
+   }
+
    public function role_update($id) {
-      // Update an Role
+      $data = Input::all();
+
+      $group = UserRole::findOrFail($id);
+      $group->fill($data);
+      $group->save();
+
+      return Redirect::route('perm.role.list');
    }
 
    public function role_destroy($id) {

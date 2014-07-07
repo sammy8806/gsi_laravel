@@ -2,17 +2,19 @@
 
 return [
       'navi'        => [
-            'home'       => 'Start',
-            'profile'    => 'My Profile',
-            'games'      => 'Games',
-            'ips'        => 'IPs',
-            'users'      => 'Users',
-            'chpass'     => 'Change Password',
-            'ticket'     => 'Support Tickets',
-            'gameserver' => 'My Gameserver',
-            'support'    => 'Help',
-            'logout'     => 'Logout',
-            'scripts'    => 'Scripts'
+            'home'              => 'Start',
+            'profile'           => 'My Profile',
+            'games'             => 'Games',
+            'ips'               => 'IPs',
+            'users'             => 'Users',
+            'chpass'            => 'Change Password',
+            'ticket'            => 'Support Tickets',
+            'gameserver'        => 'My Gameserver',
+            'support'           => 'Help',
+            'logout'            => 'Logout',
+            'scripts'           => 'Scripts',
+            'permission_groups' => 'B Groups',
+            'permission_roles'  => 'B Roles'
       ],
       'gameserver'  => [
             'connection_info'  => 'Connection info',
@@ -70,6 +72,14 @@ return [
             'add'         => 'add new Ticket',
             'tickets_new' => 'add new Ticket'
 
+      ],
+      'permissions' => [
+            'groups'     => 'Groups',
+            'group_add'  => 'Add Group',
+            'group_edit' => 'Edit Group',
+            'roles'      => 'Roles',
+            'role_add'   => 'Add Role',
+            'role_edit'  => 'Edit Role',
       ]
 
 ];

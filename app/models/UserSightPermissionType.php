@@ -13,7 +13,8 @@ class UserSightPermissionType extends Eloquent {
    protected $fillable = ['objectName'];
 
    public function sightPermissions() {
-      return $this->hasMany('UserSightPermission');
+      return $this->belongsToMany('UserSightPermission', 'dep_sight_permission2sight_permission_type',
+            'sight_permission_type_id', 'sight_permission_id');
    }
 
 } 

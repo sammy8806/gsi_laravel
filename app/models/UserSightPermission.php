@@ -13,15 +13,16 @@ class UserSightPermission extends Eloquent {
    protected $fillable = ['objectId', 'readPermission', 'writePermission', 'linkPermission', 'deletePermission'];
 
    public function users() {
-      return $this->belongsToMany('User');
+      return $this->belongsToMany('User', 'dep_sight_permission2user', 'sight_permission_id', 'user_id');
    }
 
    public function groups() {
-      return $this->belongsToMany('UserGroup');
+      return $this->belongsToMany('UserGroup', 'dep_sight_permission2group', 'sight_permission_id', 'group_id');
    }
 
    public function sightPermissionTypes() {
-      return $this->belongsToMany('UserSightPermissionType');
+      return $this->belongsToMany('UserSightPermissionType', 'dep_sight_permission2sight_permission_type',
+            'sight_permission_id', 'sight_permission_type_id');
    }
 
 } 

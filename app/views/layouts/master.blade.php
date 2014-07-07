@@ -60,6 +60,16 @@
                         <span class="icon-file-text"></span> {{{ Lang::get('site.navi.scripts') }}}
                      </a>
                   </li>
+                  <li>
+                     <a href="{{{ URL::route('perm.group.list') }}}">
+                        <span class="icon-group"></span> {{{ Lang::get('site.navi.permission_groups') }}}
+                     </a>
+                  </li>
+                  <li>
+                     <a href="{{{ URL::route('perm.role.list') }}}">
+                        <span class="icon-group"></span> {{{ Lang::get('site.navi.permission_roles') }}}
+                     </a>
+                  </li>
                   <!--                  <li>-->
                   <!--                     <a href="{{{ URL::action('UserController@getSupportTickets') }}}">-->
                   <!--                        <span class="icon-comment"></span> {{{ Lang::get('site.navi.support') }}}-->
@@ -81,9 +91,9 @@
                         English</a>
                      <ul class="dropdown-menu">
                         <li>
-                        <a href="/" class="dropdown-toggle" data-toggle="dropdown">
-                           <img src="/assets/img/flags/png/us.png"/>
-                           English</a>
+                           <a href="/" class="dropdown-toggle" data-toggle="dropdown">
+                              <img src="/assets/img/flags/png/us.png"/>
+                              English</a>
                         </li>
                         <li>
                            <a href="/" class="dropdown-toggle" data-toggle="dropdown">

@@ -7,7 +7,7 @@ class UserPermission extends Eloquent {
    protected $fillable = ['name', 'value', 'displayName'];
 
    public function roles() {
-      return $this->hasMany('UserRole');
+      return $this->belongsToMany('UserRole', 'dep_role2permission', 'role_id', 'permission_id');
    }
 
 }

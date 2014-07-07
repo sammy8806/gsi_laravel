@@ -13,15 +13,15 @@ class UserRole extends Eloquent {
    protected $fillable = ['displayName', 'description'];
 
    public function permissions() {
-      return $this->belongsToMany('UserPermission');
+      return $this->belongsToMany('UserPermission', 'dep_role2permission', 'role_id', 'permission_id');
    }
 
-   public function group() {
-      return $this->belongsToMany('Group');
+   public function groups() {
+      return $this->belongsToMany('UserGroup', 'dep_role2group', 'role_id', 'group_id');
    }
 
    public function users() {
-      return $this->belongsToMany('User');
+      return $this->belongsToMany('User', 'dep_role2user', 'role_id', 'user_id');
    }
 
 } 

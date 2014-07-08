@@ -244,6 +244,11 @@ class PermissionAdminController extends BaseController {
       return $target->sightPermissions()->detach($perm);
    }
 
+   public function sight_perm_type_index() {
+      return View::make('admin.perm.sight_perm_type_list', ['types' => UserSightPermissionType::all()]);
+   }
+
+
    public function sight_perm_user_add($id) {
       if ($this->sight_perm_add('User', $id, Input::all())) {
          return Redirect::intended();

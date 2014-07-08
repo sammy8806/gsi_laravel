@@ -60,6 +60,83 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
       return $this->belongsToMany('UserSightPermission', 'dep_sight_permission2user', 'user_id', 'sight_permission_id');
    }
 
+   public function hasRole($role_name) {
+      foreach ($this->roles as $role) {
+         if ($role->name == $role_name) {
+            return true;
+         }
+      }
+
+      return false;
+   }
+
+   public function hasGroup($group_name) {
+      foreach ($this->groups as $group) {
+         if ($group->name == $group_name) {
+            return true;
+         }
+      }
+
+      return false;
+   }
+
+   public function hasPermission($object, $action = 'read') {
+      $className = get_class($object);
+//      $type = UserSightPermissionType::where('objectName', '=', $className)->get()->first();
+      $perms = $this->sightPermissions;
+
+      /** @var UserSightPermission $perm */
+      foreach ($perms as $perm) {
+         if ($perm == null) {
+            continue;
+         }
+
+         /** @var UserSightPermissionType $type */
+         $type = $perm->sightPermissionTypes()->first();
+         if ($type->objectName != $className) {
+            continue;
+         } else {
+            if ($perm->appObjectId == $object->id && $perm->{$action . 'Permission'} == true) {
+               return true;
+            }
+         }
+      }
+
+      return false;
+   }
+
+   public function grantPermission($object, $rights = array('r' => true, 'w' => true, 'l' => true, 'd' => true)) {
+      $className = get_class($object);
+      /** @var UserSightPermissionType $type */
+      $type = UserSightPermissionType::where('objectName', '=', $className);
+
+      $perm = new UserSightPermission();
+      $perm->appObjectId = $object->id;
+      $perm->readPermission = $rights['r'];
+      $perm->writePermission = $rights['w'];
+      $perm->linkPermission = $rights['l'];
+      $perm->deletePermission = $rights['d'];
+      $perm->sightPermissionTypes()->attach($type);
+      $perm->save();
+
+      $this->sightPermissions()->attach($perm);
+   }
+
+   public function revokePermission($object) {
+      $className = get_class($object);
+
+      /** @var UserSightPermissionType $type */
+      $type = UserSightPermissionType::where('objectName', '=', $className);
+
+      /** @var UserSightPermission[] $perm */
+      $perm = UserSightPermission::where('appObjectId', '=', $object->id)->get();
+      foreach ($perm as $p) {
+         if ($p->sightPermissionTypes[0]->objectName == $className) {
+            $p->delete();
+         }
+      }
+   }
+
 //    public function tickets()
 //    {
 //        return $this->hasMany('Ticket');

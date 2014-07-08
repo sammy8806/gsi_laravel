@@ -48,6 +48,7 @@
                   <td>
                      <a href="{{ URL::action('GameserverController@show', array($gameserver->id)) }}">
                         {{$gameserver->ipport->ip->ip}}:{{$gameserver->ipport->port}}
+                        {{ Auth::getUser()->hasPermission($gameserver) ? 'OK' : 'No Access' }}
                      </a>
                   </td>
                   <td>

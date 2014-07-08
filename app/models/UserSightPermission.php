@@ -9,7 +9,7 @@
 class UserSightPermission extends Eloquent {
 
    protected $table = 'user_sight_permissions';
-   protected $timestamps = false;
+   public $timestamps = false;
    protected $fillable = ['objectId', 'readPermission', 'writePermission', 'linkPermission', 'deletePermission'];
 
    public function users() {

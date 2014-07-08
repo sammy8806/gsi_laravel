@@ -50,6 +50,7 @@ class TicketController extends \BaseController {
       if ($v->passes()) {
          $ticket = new Ticket();
          $ticket->fill(Input::all());
+         $ticket->issuer()->associate(Auth::getUser());
 
          if (Input::get('category')) {
             $cat = TicketCategory::findOrFail(Input::get('category'));

@@ -33,12 +33,11 @@ Route::group(['before' => 'auth', 'prefix' => 'permission'], function () {
 
 // Sight Perm Types # sight_perm_type
    Route::get('sight_type', ['as' => 'perm.sight_perm_type.list', 'uses' => 'PermissionAdminController@sight_perm_type_index']);
-   Route::get('sight_type/create', ['as' => 'perm.sight_perm_type.list', 'uses' => 'PermissionAdminController@sight_perm_type_create']);
-   Route::post('sight_type/create', ['as' => 'perm.sight_perm_type.list', 'uses' => 'PermissionAdminController@sight_perm_type_store']);
-   Route::patch('sight_type/{id}', ['as' => 'perm.sight_perm_type.list', 'uses' => 'PermissionAdminController@sight_perm_type_update']);
-   Route::get('sight_type/{id}/edit', ['as' => 'perm.sight_perm_type.list', 'uses' => 'PermissionAdminController@sight_perm_type_edit']);
-   Route::patch('sight_type/{id}/edit', ['as' => 'perm.sight_perm_type.list', 'uses' => 'PermissionAdminController@sight_perm_type_edit']);
-   Route::delete('sight_type/{id}', ['as' => 'perm.sight_perm_type.list', 'uses' => 'PermissionAdminController@sight_perm_type_destroy']);
+//   Route::get('sight_type/create', ['as' => 'perm.sight_perm_type.create', 'uses' => 'PermissionAdminController@sight_perm_type_create']);
+//   Route::post('sight_type/create', ['as' => 'perm.sight_perm_type.store', 'uses' => 'PermissionAdminController@sight_perm_type_store']);
+//   Route::get('sight_type/{id}/edit', ['as' => 'perm.sight_perm_type.edit', 'uses' => 'PermissionAdminController@sight_perm_type_edit']);
+//   Route::patch('sight_type/{id}/edit', ['as' => 'perm.sight_perm_type.update', 'uses' => 'PermissionAdminController@sight_perm_type_edit']);
+//   Route::delete('sight_type/{id}', ['as' => 'perm.sight_perm_type.destroy', 'uses' => 'PermissionAdminController@sight_perm_type_destroy']);
 
    Route::post('user/{id}/permission', ['as' => 'perm.user.add_perm', 'uses' => 'PermissionAdminController@sight_perm_user_add']);
    Route::delete('user/{id}/permission', ['as' => 'perm.user.del_perm', 'uses' => 'PermissionAdminController@sight_perm_user_remove']);

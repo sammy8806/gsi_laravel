@@ -23,7 +23,7 @@ class UpdateTableTickets extends Migration {
     */
    public function down() {
       Schema::table('tickets', function (Blueprint $table) {
-         Schema::dropColumn(['']);
+         Schema::dropColumn(['status']);
       });
    }
 

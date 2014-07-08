@@ -27,8 +27,8 @@ class CreateTableTickets extends Migration {
          $table->text('text');
 
          $table->integer('issuer')->unsigned();
-         $table->integer('responder')->unsigned();
-         $table->integer('parent')->unsigned();
+         $table->integer('responder')->unsigned()->nullable();
+         $table->integer('parent')->unsigned()->nullable();
          $table->integer('category')->unsigned();
 
          $table->foreign('issuer')->references('id')->on('users');

@@ -74,12 +74,13 @@ return [
 
       ],
       'permissions' => [
-            'groups'     => 'Groups',
-            'group_add'  => 'Add Group',
-            'group_edit' => 'Edit Group',
-            'roles'      => 'Roles',
-            'role_add'   => 'Add Role',
-            'role_edit'  => 'Edit Role',
+            'groups'           => 'Groups',
+            'group_add'        => 'Add Group',
+            'group_edit'       => 'Edit Group',
+            'roles'            => 'Roles',
+            'role_add'         => 'Add Role',
+            'role_edit'        => 'Edit Role',
+            'sight_perm_types' => 'Permission Types'
       ]
 
 ];

@@ -35,10 +35,10 @@
                   <td>{{ $user->last_login }}</td>
                   <td>{{ $user->active }}</td>
                   <td>
-                      <a class="btn btn-xs btn-link" href="{{ URL::action('UserController@update', [$user->id]) }}">
-                          <i class="icon-edit-sign"></i>
-                          Edit
-                      </a>
+                     <a class="btn btn-xs btn-link" href="{{ URL::action('UserController@edit', [$user->id]) }}">
+                        <i class="icon-edit-sign"></i>
+                        Edit
+                     </a>
                      <a class="btn btn-xs btn-danger" data-method="delete" href="{{ URL::action('UserController@destroy', [$user->id]) }}">
                         <i class="icon-remove-sign"></i>
                         Delete
@@ -47,7 +47,7 @@
                </tr>
                @endforeach
             </table>
-            <br />
+            <br/>
          </div>
       </div>
 
@@ -58,13 +58,13 @@
 @section('scripts')
 @parent
 <script language="JavaScript">
-   $(document).on('click', '[data-method]', function(e) {
+   $(document).on('click', '[data-method]', function (e) {
       e.preventDefault();
 
       $.ajax({
          url: $(this).attr('href'),
          type: 'DELETE',
-         success: function(data, textStatus, jqXHR) {
+         success: function (data, textStatus, jqXHR) {
             console.log('delete success');
             window.location.reload()
          }

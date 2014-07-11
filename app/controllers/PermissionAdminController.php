@@ -215,19 +215,33 @@ class PermissionAdminController extends BaseController {
 
    /**
     * @param \Illuminate\Database\Eloquent\Model $type
-    * @param $target_id
-    * @param $data
+    * @param Integer $target_id
+    * @param Input $data
     *
     * @return int
     */
-   protected function sight_perm_add(Illuminate\Database\Eloquent\Model $type, $target_id, $data) {
+   protected function sight_perm_add($type, $target_id, $data) {
+
+      foreach (['read', 'write', 'link', 'delete'] as $p_type)
+         (array_key_exists($p_type . 'Permission', $data)) ? : $data[$p_type . 'Permission'] = false;
+
       $target = $type::findOrFail($target_id);
+      $className_tmp = UserSightPermissionType::findOrFail($data['permissionType']);
+      $className = $className_tmp->objectName;
 
-      $perm = new UserSightPermission();
-      $perm->fill($data);
-      $perm->save();
+      if (!($target instanceof User)) {
+         return;
+      }
 
-      return $target->sightPermissions()->attach($perm);
+      $target->grantPermission(
+            $className::findOrFail($data['appObjectId']),
+            [
+                  'r' => $data['readPermission'],
+                  'w' => $data['writePermission'],
+                  'l' => $data['linkPermission'],
+                  'd' => $data['deletePermission']
+            ]
+      );
    }
 
    /**
@@ -237,7 +251,7 @@ class PermissionAdminController extends BaseController {
     *
     * @return int
     */
-   protected function sight_perm_del(Illuminate\Database\Eloquent\Model $type, $target_id, $perm_id) {
+   protected function sight_perm_del($type, $target_id, $perm_id) {
       $target = $type::findOrFail($target_id);
       $perm = UserSightPermission::findOrFail($perm_id);
 
@@ -250,10 +264,19 @@ class PermissionAdminController extends BaseController {
 
 
    public function sight_perm_user_add($id) {
-      if ($this->sight_perm_add('User', $id, Input::all())) {
-         return Redirect::intended();
+
+      $rules = [
+            'permissionType' => 'Exists:user_sight_permission_types,id',
+            'appObjectId'    => 'Required|Integer|Min:1'
+      ];
+
+      if (
+            Validator::make(Input::all(), $rules)->passes() &&
+            $this->sight_perm_add('User', $id, Input::all())
+      ) {
+         return Redirect::back();
       } else {
-         return Redirect::intended();
+         return Redirect::back();
       }
    }
 

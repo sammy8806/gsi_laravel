@@ -74,7 +74,7 @@ class UserController extends BaseController {
 
    public function patchChangePassword($id) {
       $rules = [
-            'password'        => 'min:6|max:120|confirmed'
+            'password' => 'min:6|max:120|confirmed'
       ];
 
       $v = Validator::make(Input::all(), $rules);
@@ -86,6 +86,7 @@ class UserController extends BaseController {
          $user->save();
 
          Session::flash('flash_notice', 'Updated to: "' . Input::get('password') . '"');
+
          return Redirect::action('UserController@getChangePassword', $id);
       } else {
          return Redirect::action('UserController@getChangePassword', $id)->withErrors($v->getMessageBag());
@@ -93,9 +94,38 @@ class UserController extends BaseController {
    }
 
 
-    public function edit($id){
-        return View::make('admin.user_edit', ['user' => Game::findOrFail($id)]);
-    }
+   public function edit($id) {
+
+      // Sight Permission Types
+
+      /** @var UserSightPermissionType $sightPermissionType */
+      $sightPermissionTypes = [];
+      foreach (UserSightPermissionType::all() as $sightPermissionType) {
+         $sightPermissionTypes[$sightPermissionType->id] = $sightPermissionType->objectName;
+      }
+
+      // Sight Permissions
+
+      $aff_sightPerms = [];
+
+      foreach (User::find($id)->sightPermissions as $sightPermission)
+         $aff_sightPerms[] = $sightPermission->id;
+
+      $sightPermissions = [];
+      /** @var UserSightPermission $sightPermission */
+      foreach (UserSightpermission::all() as $sightPermission) {
+         if (!in_array($sightPermission->id, $aff_sightPerms)) {
+            $sightPermissions[$sightPermission->id] = $sightPermission->sightPermissionTypes[0]->objectName;
+         }
+      }
+
+      return View::make('admin.user_edit', [
+                  'user'                 => User::findOrFail($id),
+                  'sightPermissionTypes' => $sightPermissionTypes,
+                  'sightPermissions'     => $sightPermissions
+            ]
+      );
+   }
 
    public function store() {
       $rules = [

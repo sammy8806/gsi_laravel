@@ -38,8 +38,8 @@
          <div class="col-md-8">#{{{ $sight->appObjectId }}}</div>
          <div class="col-md-2">
             <a class="btn btn-xs btn-danger" data-method="DELETE"
-               href="{{ URL::route('perm.user.del_sightPermission', $sight->id) }}">
-               <i class="icon-remove"></i>
+               href="{{ URL::route('perm.user.del_sightPermission', [$user->id,$sight->id]) }}">
+            <i class="icon-remove"></i>
             </a>
          </div>
       </div>

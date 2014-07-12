@@ -280,28 +280,28 @@ class PermissionAdminController extends BaseController {
       }
    }
 
-   public function sight_perm_user_remove($id) {
-      if ($this->sight_perm_del('User', $id, Input::get('permission'))) {
-         return Redirect::intended();
-      } else {
-         return Redirect::intended();
-      }
+   public function sight_perm_user_remove($id, $sp_id) {
+      return $this->sight_perm_del('User', $id, $sp_id);
    }
 
    public function sight_perm_group_add($id) {
-      if ($this->sight_perm_add('UserGroup', $id, Input::all())) {
-         return Redirect::intended();
+      $rules = [
+            'permissionType' => 'Exists:user_sight_permission_types,id',
+            'appObjectId'    => 'Required|Integer|Min:1'
+      ];
+
+      if (
+            Validator::make(Input::all(), $rules)->passes() &&
+            $this->sight_perm_add('UserGroup', $id, Input::all())
+      ) {
+         return Redirect::back();
       } else {
-         return Redirect::intended();
+         return Redirect::back();
       }
    }
 
-   public function sight_perm_group_remove($id) {
-      if ($this->sight_perm_del('UserGroup', $id, Input::get('permission'))) {
-         return Redirect::intended();
-      } else {
-         return Redirect::intended();
-      }
+   public function sight_perm_group_remove($id, $grp_id) {
+      $this->sight_perm_del('UserGroup', $id, $grp_id);
    }
 
 }

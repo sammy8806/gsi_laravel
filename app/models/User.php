@@ -149,19 +149,25 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
       $this->sightPermissions()->attach($perm);
    }
 
-   public function revokePermission($object) {
-      $className = get_class($object);
+   public function revokePermissionById($perm_id) {
+      $perm = UserSightPermissionType::findOrFail($perm_id);
 
-      /** @var UserSightPermissionType $type */
-      $type = UserSightPermissionType::where('objectName', '=', $className);
+      return $perm->delete();
+   }
+
+   public function revokePermissionByObject($object) {
+      $className = get_class($object);
+      $return = [];
 
       /** @var UserSightPermission[] $perm */
       $perm = UserSightPermission::where('appObjectId', '=', $object->id)->get();
       foreach ($perm as $p) {
          if ($p->sightPermissionTypes[0]->objectName == $className) {
-            $p->delete();
+            $return[] = $p->delete();
          }
       }
+
+      return $return;
    }
 
 //    public function tickets()

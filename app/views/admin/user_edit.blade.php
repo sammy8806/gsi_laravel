@@ -32,3 +32,24 @@
 </div>
 
 @stop
+
+@section('scripts')
+@parent
+<script language="JavaScript">
+   $(document).on('click', '[data-method]', function (e) {
+      e.preventDefault();
+
+      $.ajax({
+         url: $(this).attr('href'),
+         type: $(this).data('method'),
+         success: function (data, textStatus, jqXHR) {
+            console.log('delete success');
+            window.location.reload()
+         },
+         error: function (e) {
+            console.log(e.responseText);
+         }
+      })
+   })
+</script>
+@stop

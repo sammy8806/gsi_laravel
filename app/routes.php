@@ -40,7 +40,7 @@ Route::group(['before' => 'auth', 'prefix' => 'permission'], function () {
 //   Route::delete('sight_type/{id}', ['as' => 'perm.sight_perm_type.destroy', 'uses' => 'PermissionAdminController@sight_perm_type_destroy']);
 
    Route::post('user/{id}/sight-permission', ['as' => 'perm.user.add_sightPermission', 'uses' => 'PermissionAdminController@sight_perm_user_add']);
-   Route::delete('user/{id}/sight-permission',
+   Route::delete('user/{id}/sight-permission/{sp_id}',
          ['as' => 'perm.user.del_sightPermission', 'uses' => 'PermissionAdminController@sight_perm_user_remove']);
    Route::post('group/{id}/sight-permission', ['as' => 'perm.group.add_perm', 'uses' => 'PermissionAdminController@sight_perm_group_add']);
    Route::delete('group/{id}/sight-permission', ['as' => 'perm.group.del_perm', 'uses' => 'PermissionAdminController@sight_perm_group_remove']);

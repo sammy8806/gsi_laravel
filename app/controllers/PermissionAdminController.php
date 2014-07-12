@@ -35,10 +35,35 @@ class PermissionAdminController extends BaseController {
          }
       }
 
+      // Sight Permission Types
+
+      /** @var UserSightPermissionType $sightPermissionType */
+      $sightPermissionTypes = [];
+      foreach (UserSightPermissionType::all() as $sightPermissionType) {
+         $sightPermissionTypes[$sightPermissionType->id] = $sightPermissionType->objectName;
+      }
+
+      // Sight Permissions
+
+      $aff_sightPerms = [];
+
+      foreach (UserGroup::find($id)->sightPermissions as $sightPermission)
+         $aff_sightPerms[] = $sightPermission->id;
+
+      $sightPermissions = [];
+      /** @var UserSightPermission $sightPermission */
+      foreach (UserSightPermission::all() as $sightPermission) {
+         if (!in_array($sightPermission->id, $aff_sightPerms)) {
+            $sightPermissions[$sightPermission->id] = $sightPermission->sightPermissionTypes[0]->objectName;
+         }
+      }
+
       return View::make('admin.perm.group_edit', [
-            'group' => UserGroup::find($id),
-            'users' => $users,
-            'roles' => $roles
+            'group'                => UserGroup::find($id),
+            'users'                => $users,
+            'roles'                => $roles,
+            'sightPermissionTypes' => $sightPermissionTypes,
+            'sightPermissions'     => $sightPermissions
       ]);
    }
 
@@ -48,8 +73,8 @@ class PermissionAdminController extends BaseController {
       return Redirect::route('perm.group.edit', $id);
    }
 
-   public function group_del_user($id) {
-      UserGroup::findOrFail($id)->users()->detach(User::find(Input::get('user')));
+   public function group_del_user($id, $user_id) {
+      UserGroup::findOrFail($id)->users()->detach(User::findOrFail($user_id));
       // return Redirect::route('perm.group.edit', $id);
    }
 
@@ -59,8 +84,8 @@ class PermissionAdminController extends BaseController {
       return Redirect::route('perm.group.edit', $id);
    }
 
-   public function group_del_role($id) {
-      UserGroup::findOrFail($id)->users()->detach(UserRole::find(Input::get('role')));
+   public function group_del_role($id, $role_id) {
+      UserGroup::findOrFail($id)->users()->detach(UserRole::findOrFail($role_id));
       // return Redirect::route('perm.group.edit', $id);
    }
 
@@ -229,7 +254,7 @@ class PermissionAdminController extends BaseController {
       $className_tmp = UserSightPermissionType::findOrFail($data['permissionType']);
       $className = $className_tmp->objectName;
 
-      if (!($target instanceof User)) {
+      if (!($target instanceof User || $target instanceof UserGroup)) {
          return;
       }
 
@@ -270,12 +295,16 @@ class PermissionAdminController extends BaseController {
             'appObjectId'    => 'Required|Integer|Min:1'
       ];
 
+      $v = Validator::make(Input::all(), $rules);
+
       if (
-            Validator::make(Input::all(), $rules)->passes() &&
+            $v->passes() &&
             $this->sight_perm_add('User', $id, Input::all())
       ) {
          return Redirect::back();
       } else {
+         Session::flash('errors', $v->getMessageBag());
+
          return Redirect::back();
       }
    }
@@ -290,12 +319,16 @@ class PermissionAdminController extends BaseController {
             'appObjectId'    => 'Required|Integer|Min:1'
       ];
 
+      $v = Validator::make(Input::all(), $rules);
+
       if (
-            Validator::make(Input::all(), $rules)->passes() &&
+            $v->passes() &&
             $this->sight_perm_add('UserGroup', $id, Input::all())
       ) {
          return Redirect::back();
       } else {
+         Session::flash('errors', $v->getMessageBag());
+
          return Redirect::back();
       }
    }

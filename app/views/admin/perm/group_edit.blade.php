@@ -28,8 +28,8 @@
 @endif
 
 <div class="row">
-   <div class="col-md-6">
-      <div class="block">
+   <div class="col-md-4">
+   <div class="block">
          <div class="header">
             <h2>{{{ Lang::get('site.permissions.group_edit') }}}</h2>
          </div>
@@ -52,7 +52,7 @@
          </div>
       </div>
    </div>
-   <div class="col-md-6">
+   <div class="col-md-4">
       <div class="block">
          <div class="header">
             <h2>Affected Users</h2>
@@ -60,12 +60,12 @@
          <div class="content controls">
             @foreach($group->users as $user)
             <div class="form-row">
-               <div class="col-md-2">User:</div>
-               <div class="col-md-8">{{{ $user->customLoginName }}} ({{{ $user->email }}})</div>
+               <div class="col-md-3">User:</div>
+               <div class="col-md-7">{{{ $user->customLoginName }}} ({{{ $user->email }}})</div>
                <div class="col-md-2">
                   <a class="btn btn-xs btn-danger" data-method="DELETE"
-                     href="{{ URL::route('perm.group.del_user', $group->id) }}">
-                     <i class="icon-remove"></i>
+                     href="{{ URL::route('perm.group.del_user', [$group->id, $user->id]) }}">
+                  <i class="icon-remove"></i>
                   </a>
                </div>
             </div>
@@ -74,8 +74,8 @@
             @if(count($users) != 0)
             {{ Form::open(['method' => 'POST', 'route' => ['perm.group.add_user', $group->id]]) }}
             <div class="form-row">
-               <div class="col-md-2">{{ Form::label('user', 'Add User:') }}</div>
-               <div class="col-md-8">{{ Form::select('user', $users) }}</div>
+               <div class="col-md-3">{{ Form::label('user', 'Add User:') }}</div>
+               <div class="col-md-7">{{ Form::select('user', $users) }}</div>
                <div class="col-md-2">{{ Form::submit('Add') }}</div>
             </div>
             {{ Form::close() }}
@@ -89,9 +89,13 @@
          <div class="content controls">
             @foreach($group->roles as $role)
             <div class="form-row">
-               <div class="col-md-9">{{{ $role->name }}}</div>
+               <div class="col-md-3">Role:</div>
+               <div class="col-md-7">{{{ $role->name }}}</div>
                <div class="col-md-3">
-
+                  <a class="btn btn-xs btn-danger" data-method="DELETE"
+                     href="{{ URL::route('perm.group.del_role', [$group->id, $role->id]) }}">
+                     <i class="icon-remove"></i>
+                  </a>
                </div>
             </div>
             @endforeach
@@ -99,14 +103,17 @@
             @if(count($roles) != 0)
             {{ Form::open(['method' => 'POST', 'route' => ['perm.group.add_role']]) }}
             <div class="form-row">
-               <div class="col-md-2">{{ Form::label('role', 'Add Role:') }}</div>
-               <div class="col-md-8">{{ Form::select('role', $roles) }}</div>
+               <div class="col-md-3">{{ Form::label('role', 'Add Role:') }}</div>
+               <div class="col-md-7">{{ Form::select('role', $roles) }}</div>
                <div class="col-md-2">{{ Form::submit('Add') }}</div>
             </div>
             {{ Form::close() }}
             @endif
          </div>
       </div>
+   </div>
+   <div class="col-md-4">
+      @include('admin.perm._group_sight_perm')
    </div>
 </div>
 @stop

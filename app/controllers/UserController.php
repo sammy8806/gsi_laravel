@@ -113,7 +113,7 @@ class UserController extends BaseController {
 
       $sightPermissions = [];
       /** @var UserSightPermission $sightPermission */
-      foreach (UserSightpermission::all() as $sightPermission) {
+      foreach (UserSightPermission::all() as $sightPermission) {
          if (!in_array($sightPermission->id, $aff_sightPerms)) {
             $sightPermissions[$sightPermission->id] = $sightPermission->sightPermissionTypes[0]->objectName;
          }

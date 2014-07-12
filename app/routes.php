@@ -12,9 +12,9 @@ Route::group(['before' => 'auth', 'prefix' => 'permission'], function () {
    Route::delete('group/{id}', ['as' => 'perm.group.destroy', 'uses' => 'PermissionAdminController@group_destroy']);
 
    Route::post('group/{id}/user', ['as' => 'perm.group.add_user', 'uses' => 'PermissionAdminController@group_add_user']);
-   Route::delete('group/{id}/user', ['as' => 'perm.group.del_user', 'uses' => 'PermissionAdminController@group_del_user']);
+   Route::delete('group/{id}/user/{user_id}', ['as' => 'perm.group.del_user', 'uses' => 'PermissionAdminController@group_del_user']);
    Route::post('group/{id}/role', ['as' => 'perm.group.add_role', 'uses' => 'PermissionAdminController@group_add_role']);
-   Route::delete('group/{id}/role', ['as' => 'perm.group.add_role', 'uses' => 'PermissionAdminController@group_del_role']);
+   Route::delete('group/{id}/role/{role_id}', ['as' => 'perm.group.add_role', 'uses' => 'PermissionAdminController@group_del_role']);
 
 // Roles
    Route::get('role', ['as' => 'perm.role.list', 'uses' => 'PermissionAdminController@role_index']);
@@ -42,8 +42,9 @@ Route::group(['before' => 'auth', 'prefix' => 'permission'], function () {
    Route::post('user/{id}/sight-permission', ['as' => 'perm.user.add_sightPermission', 'uses' => 'PermissionAdminController@sight_perm_user_add']);
    Route::delete('user/{id}/sight-permission/{sp_id}',
          ['as' => 'perm.user.del_sightPermission', 'uses' => 'PermissionAdminController@sight_perm_user_remove']);
-   Route::post('group/{id}/sight-permission', ['as' => 'perm.group.add_perm', 'uses' => 'PermissionAdminController@sight_perm_group_add']);
-   Route::delete('group/{id}/sight-permission', ['as' => 'perm.group.del_perm', 'uses' => 'PermissionAdminController@sight_perm_group_remove']);
+   Route::post('group/{id}/sight-permission', ['as' => 'perm.group.add_sightPermission', 'uses' => 'PermissionAdminController@sight_perm_group_add']);
+   Route::delete('group/{id}/sight-permission',
+         ['as' => 'perm.group.del_sightPermission', 'uses' => 'PermissionAdminController@sight_perm_group_remove']);
 
 });
 // END Permisions

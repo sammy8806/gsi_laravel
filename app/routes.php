@@ -46,6 +46,14 @@ Route::group(['before' => 'auth', 'prefix' => 'permission'], function () {
    Route::delete('group/{id}/sight-permission',
          ['as' => 'perm.group.del_sightPermission', 'uses' => 'PermissionAdminController@sight_perm_group_remove']);
 
+   // Permissions
+   Route::get('permission', ['as' => 'perm.permission.list', 'uses' => 'PermissionAdminController@permission_index']);
+   Route::get('permission/create', ['as' => 'perm.permission.create', 'uses' => 'PermissionAdminController@permission_create']);
+   Route::post('permission/create', ['as' => 'perm.permission.store', 'uses' => 'PermissionAdminController@permission_store']);
+   Route::get('permission/{id}/edit', ['as' => 'perm.permission.edit', 'uses' => 'PermissionAdminController@permission_edit']);
+   Route::patch('permission/{id}/edit', ['as' => 'perm.permission.update', 'uses' => 'PermissionAdminController@permission_update']);
+   Route::delete('permission/{id}', ['as' => 'perm.permission.destroy', 'uses' => 'PermissionAdminController@permission_destroy']);
+
 });
 // END Permisions
 

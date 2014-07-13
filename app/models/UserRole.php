@@ -24,4 +24,4 @@ class UserRole extends Eloquent {
       return $this->belongsToMany('User', 'dep_role2user', 'role_id', 'user_id');
    }
 
-} 
+}

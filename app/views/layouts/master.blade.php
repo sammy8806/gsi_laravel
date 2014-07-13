@@ -73,7 +73,12 @@
                   </a>
                </li>
                <li>
-                  <a href="{{{ URL::route('perm.sight_perm_type.list') }}}">
+                  <a href="{{{ URL::route('perm.permission.list') }}}">
+                     <span class="icon-group"></span> {{{ Lang::get('site.navi.permissions') }}}
+                  </a>
+               </li>
+               <li>
+               <a href="{{{ URL::route('perm.sight_perm_type.list') }}}">
                      <span class="icon-group"></span> {{{ Lang::get('site.navi.sight_perm_types') }}}
                   </a>
                </li>

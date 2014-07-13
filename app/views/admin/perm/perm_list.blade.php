@@ -2,7 +2,7 @@
 
 @section('breadcrumb')
 @parent
-<li><a href="{{{ route('perm.group.list') }}}">{{{ Lang::get('site.permissions.roles') }}}</a></li>
+<li><a href="{{{ route('perm.permission.list') }}}">{{{ Lang::get('site.permissions.permissions') }}}</a></li>
 @stop
 
 @section('content')
@@ -10,43 +10,39 @@
    <div class="col-md-12">
       <div class="block">
          <div class="header">
-            <h2><i class="icon-group"> {{{ Lang::get('site.permissions.roles') }}}</i></h2>&nbsp;
-            <a class="btn btn-xs" href="{{ route('perm.role.create') }}">
-               <i class="icon-plus"></i> {{{ Lang::get('site.permissions.role_add') }}}
+            <h2><i class="icon-permission"> {{{ Lang::get('site.permissions.permissions') }}}</i></h2>&nbsp;
+            <a class="btn btn-xs" href="{{ route('perm.permission.create') }}">
+               <i class="icon-plus"></i> {{{ Lang::get('site.permissions.permission_add') }}}
             </a>
          </div>
          <div class="content">
             <table class="table table-bordered table-striped">
                <tr>
                   <th>Name</th>
-                  <th>Attached Users</th>
-                  <th>Attached Groups</th>
+                  <th>Attached Roles</th>
+                  <th>Value</th>
                   <th>Actions</th>
                </tr>
-               @foreach($roles as $role)
+               @foreach($permissions as $permission)
                <tr>
-                  <td>{{{ $role->displayName }}}</td>
+                  <td>{{{ $permission->displayName }}}</td>
                   <td>
                      <ul>
-                        @foreach($role->users as $user)
-                        <li>{{ $user->customLoginName }}</li>
+                        @foreach($permission->roles as $role)
+                        <li>{{{ $role->displayName }}}</li>
                         @endforeach
                      </ul>
                   </td>
                   <td>
-                     <ul>
-                        @foreach($role->groups as $group)
-                        <li>{{ $group->displayName }}</li>
-                        @endforeach
-                     </ul>
+                     {{{ $permission->value }}}
                   </td>
                   <td>
-                  <a class="btn btn-xs btn-link" href="{{ URL::route('perm.role.edit', [$role->id]) }}">
+                     <a class="btn btn-xs btn-link" href="{{ URL::route('perm.permission.edit', [$permission->id]) }}">
                         <i class="icon-edit-sign"></i>
                         Edit
                      </a>
                      <a class="btn btn-xs btn-danger" data-method="DELETE"
-                        href="{{ URL::route('perm.role.destroy', [$role->id]) }}">
+                        href="{{ URL::route('perm.permission.destroy', [$permission->id]) }}">
                         <i class="icon-remove-sign"></i>
                         Delete
                      </a>

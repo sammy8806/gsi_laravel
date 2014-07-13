@@ -337,4 +337,72 @@ class PermissionAdminController extends BaseController {
       $this->sight_perm_del('UserGroup', $id, $grp_id);
    }
 
+   // Permissions
+
+   public function permission_index() {
+      return View::make('admin.perm.perm_list', ['permissions' => UserPermission::all()]);
+   }
+
+   public function permission_create() {
+      return View::make('admin.perm.perm_add');
+   }
+
+   public function permission_store() {
+
+      $rules = [
+            'displayName' => 'Required|Max:250',
+            'name'        => 'Required|Min:3|Max:250|regex:/[A-Za-z_\.]+/',
+            'value'       => 'Required'
+      ];
+
+      $v = Validator::make(Input::all(), $rules);
+
+      if ($v->passes()) {
+         $perm = new UserPermission();
+         $perm->fill(Input::all());
+         if (!$perm->save()) {
+            Session::flash('site_notice', 'Error while saving!');
+         }
+      } else {
+         Session::flash('errors', $v->getMessageBag());
+      }
+
+      return Redirect::route('perm.permission.list');
+   }
+
+   public function permission_destroy($id) {
+      return UserPermission::findOrFail($id)->delete();
+   }
+
+   public function permission_edit($id) {
+      return View::make('admin.perm.perm_edit', ['permission' => UserPermission::findOrFail($id)]);
+   }
+
+   public function permission_update($id) {
+
+      $rules = [
+            'displayName' => 'Required|String|Max:250',
+            'name'        => 'Required|AlphaNum|Min:3|Max:250',
+            'value'       => 'Required'
+      ];
+
+      $v = Validator::make(Input::all(), $rules);
+
+      if ($v->passes()) {
+         $perm = UserPermission::findOrFail($id);
+         $perm->fill(Input::all());
+         if (!$perm->save()) {
+            Session::flash('site_notice', 'Error while saving!');
+         }
+      } else {
+         Session::flash('errors', $v->getMessageBag());
+      }
+
+      return Redirect::back();
+   }
+
+   public function permission_show($id) {
+      // TODO: Implement Single View
+   }
+
 }

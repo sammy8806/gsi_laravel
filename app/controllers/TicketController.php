@@ -87,20 +87,7 @@ class TicketController extends \BaseController {
     * @return Response
     */
    public function edit($id) {
-      $ticket = Ticket::findOrFail($id);
-
-      $ticket = [];
-      foreach (Ticket::all() as $ticket) {
-         $ticket[$ticket->id] = $ticket->name;
-      }
-
-      return View::make('user.Ticket_edit', [
-            //'priority' => $priority,
-//            'title'    => $title,
-//            'text'     => $text,
-//            'status'   => $status,
-//            'category' => $category,
-      ]);
+      return View::make('user.ticket_edit', ['ticket' => ticket::findOrFail($id)]);
 
    }
 

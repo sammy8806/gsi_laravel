@@ -26,8 +26,6 @@
 @endif
 <div class="row">
     <div class="col-md-12">
-
-
         <div class="block">
             <div class="header">
                 <h2>{{{ Lang::get('site.userprofile.username') }}}: {{$user->customLoginName}}</h2>
@@ -76,7 +74,6 @@
                 {{ Form::close() }}
             </div>
         </div>
-
     </div>
 </div>
 @stop

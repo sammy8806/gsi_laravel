@@ -46,18 +46,18 @@
                @foreach ($gameservers as $gameserver)
                <tr>
                   <td>
-                     <a href="{{ URL::action('GameserverController@show', array($gameserver->id)) }}">
+                     <a href="{{ URL::action('GameserverController@show', [$gameserver->id]) }}">
                         {{$gameserver->ipport->ip->ip}}:{{$gameserver->ipport->port}}
                         {{ Auth::getUser()->hasPermission($gameserver) ? 'OK' : 'No Access' }}
                      </a>
                   </td>
                   <td>
-                     <a href="{{ URL::action('GameserverController@show', array($gameserver->id)) }}">
+                     <a href="{{ URL::action('GameserverController@show', [$gameserver->id]) }}">
                         {{$gameserver->displayName }}
                      </a>
                   </td>
                   <td>
-                     <a href="{{ URL::action('GameserverController@show', array($gameserver->id)) }}">
+                     <a href="{{ URL::action('GameserverController@show', [$gameserver->id]) }}">
                         {{$gameserver->status }}
                      </a>
                   </td>

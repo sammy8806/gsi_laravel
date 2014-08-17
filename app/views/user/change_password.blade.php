@@ -34,16 +34,16 @@
          <div class="content controls">
             {{ Form::open(['method' => 'PATCH', 'action' => ['UserController@patchChangePassword', $user->id]]) }}
             <div class="form-row">
-               <div class="col-md-3">{{ Form::label('password', 'Password:') }}</div>
+               <div class="col-md-3">{{ Form::label('password', Lang::get('site.changePassword.password')) }}</div>
                <div class="col-md-9">{{ Form::password('password') }}</div>
             </div>
             <div class="form-row">
-               <div class="col-md-3">{{ Form::label('password_confirmation', 'Password Confirm:') }}</div>
+               <div class="col-md-3">{{ Form::label('password_confirmation', Lang::get('site.changePassword.password_confirmation')) }}</div>
                <div class="col-md-9">{{ Form::password('password_confirmation') }}</div>
             </div>
             <div class="form-row">
                <div class="col-md-9 col-md-offset-3">
-                  {{ Form::submit('Save') }}
+                  {{ Form::submit(Lang::get('site.changePassword.save')) }}
                </div>
             </div>
             {{ Form::close() }}

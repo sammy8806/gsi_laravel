@@ -81,6 +81,32 @@ return [
             'role_add'         => 'Add Role',
             'role_edit'        => 'Edit Role',
             'sight_perm_types' => 'Permission Types'
+      ],
+      'ticketform' => [
+            'add_ticket'        => 'TICKET ADD',
+            'edit_ticket'        => 'EDIT TICKET',
+            'title'           => 'Title:',
+            'text'        => 'Text:',
+            'status'       => 'Status:',
+            'priority'            => 'Priority:',
+            'category'         => 'Category:',
+            'save'        => 'Save'
+      ],
+      'profile' => [
+            'customLoginName'        => 'Login Name:',
+            'email'        => 'Email:',
+            'status'           => 'Status:',
+            'first_name'        => 'First Name:',
+            'last_name'       => 'Last Name:',
+            'address'            => 'Address:',
+            'phone'         => 'Phone:',
+            'cellnumber' => 'Cellular Number:',
+            'save'        => 'Save'
+      ],
+      'changePassword' => [
+            'password'         => 'Password:',
+            'password_confirmation' => 'Password Confirm:',
+            'save'        => 'Save'
       ]
 
 ];

@@ -14,7 +14,7 @@
    <div class="col-md-6">
       <div class="block">
          <div class="header">
-            <h2>TICKET ADD</h2>
+            <h2>Lang::get('site.ticketform.edit_ticket')</h2>
          </div>
          <div class="content controls">
             {{ Form::model($ticket, ['method' => 'PATCH', 'action' => ['TicketController@edit']]) }}

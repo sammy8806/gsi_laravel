@@ -11,7 +11,7 @@
    <div class="col-md-6">
       <div class="block">
          <div class="header">
-            <h2>TICKET ADD</h2>
+            <h2>Lang::get('site.ticketform.add_ticket')</h2>
          </div>
          <div class="content controls">
             {{ Form::model($tickets, ['method' => 'POST', 'action' => ['TicketController@store']]) }}

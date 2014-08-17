@@ -87,7 +87,9 @@ class TicketController extends \BaseController {
     * @return Response
     */
    public function edit($id) {
-      return View::make('user.ticket_edit', ['ticket' => ticket::findOrFail($id)]);
+      // TODO: Hier muss noch $category eingefuegt bzw abgefangen wegen die Ticket Categorie sonst laesst sich das ganze nicht aendern!
+
+      return View::make('user.ticket_edit', ['ticket' => Ticket::findOrFail($id)]);
 
    }
 

@@ -210,7 +210,7 @@
    <div class="row">
       <div class="col-md-12">
          <ol class="breadcrumb text-center">
-            &copy; 2014 Play-Arena.net - All rights reserved.
+            &copy; 2014 PlayArena LLC - All rights reserved.
          </ol>
       </div>
    </div>

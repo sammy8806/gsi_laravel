@@ -1,10 +1,13 @@
 @extends('layouts.master')
 
+
 @section('breadcrumb')
+
 @parent
  <li><a href="{{{ URL::action('TicketController@index') }}}">{{{ Lang::get('site.ticket.tickets') }}}</a></li>
  <li><a href="{{{ URL::action('TicketController@create') }}}">{{{ Lang::get('site.ticket.tickets_new') }}}</a></li>
 @stop
+
 
 @section('content')
 <div class="row">
@@ -14,7 +17,7 @@
             <h2>TICKET ADD</h2>
          </div>
          <div class="content controls">
-            {{ Form::model($tickets, ['method' => 'PATCH', 'action' => ['TicketController@edit']]) }}
+            {{ Form::model($ticket, ['method' => 'PATCH', 'action' => ['TicketController@edit']]) }}
             @include('user._ticket_form')
             {{ Form::close() }}
       </div>

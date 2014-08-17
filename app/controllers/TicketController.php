@@ -112,7 +112,8 @@ class TicketController extends \BaseController {
     * @return Response
     */
    public function destroy($id) {
-      //
+      Ticket::destroy(Ticket::findOrFail($id));
+      Ticket::destroy($id);
    }
 
 }

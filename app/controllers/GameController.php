@@ -84,7 +84,8 @@ class GameController extends \BaseController {
     * @return Response
     */
    public function destroy($id) {
-      //
+      Game::destroy(Game::findOrFail($id));
+      Game::destroy($id);
    }
 
    public function getScript($id) {

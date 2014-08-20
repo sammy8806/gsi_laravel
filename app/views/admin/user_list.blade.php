@@ -43,6 +43,10 @@
                         <i class="icon-remove-sign"></i>
                         Delete
                      </a>
+                     <a class="btn btn-xs btn-danger" data-method="delete" href="{{{ URL::action('UserController@getChangePassword') }}}">
+                        <i class="icon-key"></i>
+                        {{{ Lang::get('site.navi.chpass') }}}
+                      </a>
                   </td>
                </tr>
                @endforeach

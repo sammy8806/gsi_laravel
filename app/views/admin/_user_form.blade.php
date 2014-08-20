@@ -3,14 +3,6 @@
     <div class="col-md-9">{{ Form::text('customLoginName') }}</div>
 </div>
 <div class="form-row">
-    <div class="col-md-3">{{ Form::label('password', 'Password:') }}</div>
-    <div class="col-md-9">{{ Form::password('password') }}</div>
-</div>
-<div class="form-row">
-    <div class="col-md-3">{{ Form::label('password_confirmation', 'Password Confirm:') }}</div>
-    <div class="col-md-9">{{ Form::password('password_confirmation') }}</div>
-</div>
-<div class="form-row">
     <div class="col-md-3">{{ Form::label('email', 'Email:') }}</div>
     <div class="col-md-9">{{ Form::email('email') }}</div>
 </div>

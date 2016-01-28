@@ -74,7 +74,8 @@ class UserController extends BaseController {
 
    public function patchChangePassword($id) {
       $rules = [
-            'password' => 'min:6|max:120|confirmed'
+            'password' => 'required|min:6|max:120|confirmed',
+            'password_confirmation' => 'required|min:3'
       ];
 
       $v = Validator::make(Input::all(), $rules);

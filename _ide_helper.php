@@ -2273,6 +2273,18 @@ namespace {
 		 }
 
 		/**
+		 * Remove an item from the cache.
+		 *
+		 * @param string $key
+		 * @return bool
+		 * @static 
+		 */
+		 public static function forget($key){
+			//Method inherited from \Illuminate\Cache\Repository
+			return \Illuminate\Cache\Repository::forget($key);
+		 }
+
+		/**
 		 * Retrieve an item from the cache by key.
 		 *
 		 * @param string  $key
@@ -2539,18 +2551,6 @@ namespace {
 		 public static function forever($key, $value){
 			//Method inherited from \Illuminate\Cache\ArrayStore
 			 \Illuminate\Cache\ArrayStore::forever($key, $value);
-		 }
-
-		/**
-		 * Remove an item from the cache.
-		 *
-		 * @param string  $key
-		 * @return void
-		 * @static 
-		 */
-		 public static function forget($key){
-			//Method inherited from \Illuminate\Cache\ArrayStore
-			 \Illuminate\Cache\ArrayStore::forget($key);
 		 }
 
 		/**
@@ -4218,12 +4218,26 @@ namespace {
 		 * Add a new "raw" select expression to the query.
 		 *
 		 * @param string  $expression
+		 * @param array   $bindings
 		 * @return \Illuminate\Database\Query\Builder|static
 		 * @static 
 		 */
-		 public static function selectRaw($expression){
+		 public static function selectRaw($expression, $bindings = array()){
 			//Method inherited from \Illuminate\Database\Query\Builder
-			return \Illuminate\Database\Query\Builder::selectRaw($expression);
+			return \Illuminate\Database\Query\Builder::selectRaw($expression, $bindings);
+		 }
+
+		/**
+		 * Add a subselect expression to the query.
+		 *
+		 * @param \Closure|\Illuminate\Database\Query\Builder|string $query
+		 * @param string  $as
+		 * @return \Illuminate\Database\Query\Builder|static
+		 * @static 
+		 */
+		 public static function selectSub($query, $as){
+			//Method inherited from \Illuminate\Database\Query\Builder
+			return \Illuminate\Database\Query\Builder::selectSub($query, $as);
 		 }
 
 		/**

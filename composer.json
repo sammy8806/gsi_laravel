@@ -4,11 +4,17 @@
 	"keywords": ["framework", "laravel", "gameserver", "linux", "windows"],
 	"license": "CC-BY-SA",
 	"require": {
-		"laravel/framework": "4.2.*",
+		"laravel/framework": "dev-master",
         "barryvdh/laravel-ide-helper": "1.*",
         "jyggen/curl": "4.0.*@dev",
         "doctrine/dbal": "~2.3"
 	},
+    "repositories": [
+        {
+            "type": "git",
+            "url":  "https://github.com/laravel/framework"
+        }
+    ],
 	"autoload": {
 		"classmap": [
 			"app/commands",

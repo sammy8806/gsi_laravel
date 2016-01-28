@@ -123,4 +123,8 @@ class ScriptController extends \BaseController {
       // return Redirect::action('ScriptController@index')->with('notice', $msg);
    }
 
+   public function run($target, $target_type = 'ip') {
+
+   }
+
 }

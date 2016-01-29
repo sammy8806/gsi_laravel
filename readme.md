@@ -1,3 +1,7 @@
+# !! WARNING !!
+# THIS IS OLD AND NOT DEVELOPED ANYMORE
+_(Some useless passwords are inside, because simlpy pushing from develop to github)_
+
 ## Play-Arena Webinterface
 
 The Webinterface is developed as an draft for the real and blazingly fast rails version.
